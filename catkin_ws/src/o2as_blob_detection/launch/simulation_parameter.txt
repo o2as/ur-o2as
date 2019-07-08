@@ -1,0 +1,5 @@
+rosbag play 2018-09-29-15-18-32.bag --start=12.0 --duration=0.5 -l --topics /camera/cloud /camera/color/image_raw
+
+demo
+skill server
+o2as_blob_detection.launch

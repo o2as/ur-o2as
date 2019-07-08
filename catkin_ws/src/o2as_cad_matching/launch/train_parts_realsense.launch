@@ -1,0 +1,11 @@
+<launch>
+    <arg name="parts_list_filename" default="$(find o2as_cad_matching)/data/object_config/assembly_parts_list.yaml"/>
+
+    <arg name="b_bot_camera_serial_number" default="616205004841"/>
+    <include file="$(find o2as_cad_matching)/launch/train_parts.launch">
+        <arg name="parts_list_filename" value="$(arg parts_list_filename)"/>
+        <arg name="camera_type" value="realsense"/>
+        <arg name="camera_serial_number" value="$(arg b_bot_camera_serial_number)"/>
+        <arg name="camera_name" value="b_bot_camera"/>
+    </include>
+</launch>

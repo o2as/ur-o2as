@@ -1,0 +1,13 @@
+int32 object_id 
+int32 both_sided 
+int32 min_lat 
+int32 max_lat
+int32 min_lon 
+int32 max_lon 
+int32 min_roll
+int32 max_roll
+int32 min_dist 
+int32 max_dist
+float32 ini_pose_x
+float32 ini_pose_y
+float32 ini_pose_z

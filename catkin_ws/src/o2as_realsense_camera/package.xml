@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>o2as_realsense_camera</name>
+  <version>0.0.0</version>
+  <description>The o2as_realsense_camera package</description>
+
+  <maintainer email="yoshiya_shibata@omron.co.jp">Yoshiya Shibata</maintainer>
+  <license>MIT</license>
+
+	<buildtool_depend>catkin</buildtool_depend>
+	<depend>roscpp</depend>
+	<depend>nodelet</depend>
+	<depend>pluginlib</depend>
+	<depend>dynamic_reconfigure</depend>
+	<depend>std_srvs</depend>
+	<depend>pcl_conversions</depend>
+	<depend>librealsense2</depend>
+	<depend version_gte="3.3.0">opencv3</depend>
+	<depend>cv_bridge</depend>
+	<depend>sensor_msgs</depend>
+	<depend>image_transport</depend>
+	<depend>tf2_ros</depend>
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <nodelet plugin="${prefix}/o2as_realsense_camera_nodelet.xml"/>
+  </export>
+</package>

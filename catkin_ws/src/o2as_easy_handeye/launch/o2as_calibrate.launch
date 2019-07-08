@@ -1,0 +1,95 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="robot_name"	default="b_bot"/>
+  <arg name="camera_name"	default="a_phoxi_m_camera"/>
+  <arg name="config"		default="sim"/>
+
+  <!-- Set AR marker ID -->
+  <arg name="marker_id"		value="26"
+       unless="$(eval arg('camera_name') == 'a_bot_camera')"/>
+  <arg name="marker_id"		value="32"
+       if="$(eval arg('camera_name') == 'a_bot_camera')"/>
+
+  <arg name="marker_size"	value="0.07"
+       unless="$(eval arg('camera_name') == 'a_bot_camera')" />
+  <arg name="marker_size"	value="0.16"
+       if="$(eval arg('camera_name') == 'a_bot_camera')" />
+
+  <arg name="eye_on_hand"	value="false"
+       unless="$(eval arg('camera_name') == 'a_bot_camera')" />
+  <arg name="eye_on_hand"	value="true"
+       if="$(eval arg('camera_name') == 'a_bot_camera')" />
+
+  <arg name="robot_effector_frame"	value="$(arg robot_name)_ee_link"
+       unless="$(eval arg('camera_name') == 'a_bot_camera')"/>
+  <arg name="robot_effector_frame"	value="$(arg robot_name)_wrist_2_link"
+       if="$(eval arg('camera_name') == 'a_bot_camera')"/>
+  
+  <arg name="move_group"	value="$(arg robot_name)"/>
+  <arg name="namespace_prefix"	value="o2as_easy_handeye_$(arg robot_name)"/>
+
+  <param name="use_real_robot"	value="false"
+	 if="$(eval arg('config') == 'sim')"/>
+  
+  <!-- Start ArUco -->
+  <!-- <node name="aruco_tracker" pkg="aruco_ros" type="single"> -->
+  <node name="aruco_tracker" pkg="o2as_aruco_ros" type="o2as_single"
+  	output="screen">
+    <remap from="/camera_info"	to="/$(arg camera_name)/camera_info"
+	   if="$(eval arg('camera_name') == 'a_phoxi_m_camera')"/>
+    <remap from="/image"	to="/$(arg camera_name)/texture"
+	   if="$(eval arg('camera_name') == 'a_phoxi_m_camera')"/>
+    <remap from="/pointcloud"	to="/$(arg camera_name)/pointcloud"
+    	   if="$(eval arg('camera_name') == 'a_phoxi_m_camera')"/>
+    <remap from="/camera_info"	to="/$(arg camera_name)/rgb/camera_info"
+	   unless="$(eval arg('camera_name') == 'a_phoxi_m_camera')"/>
+    <remap from="/image"	to="/$(arg camera_name)/rgb/image_raw"
+	   unless="$(eval arg('camera_name') == 'a_phoxi_m_camera')"/>
+    <remap from="/pointcloud"	to="/$(arg camera_name)/depth/points"
+    	   unless="$(eval arg('camera_name') == 'a_phoxi_m_camera')"/>
+
+    <!-- Other parameters -->
+    <param name="image_is_rectified" value="false"/>
+    <param name="marker_size"        value="$(arg marker_size)"/>
+    <param name="marker_id"          value="$(arg marker_id)"/>
+    <param name="reference_frame"    value=""/>
+    <param name="camera_frame"       value="camera_link"/>
+    <param name="marker_frame"       value="camera_marker"/>
+  </node>
+
+  <!-- Start robot controller -->
+  <include file="$(find o2as_examples)/launch/connect_real_robots.launch"
+	   if="$(eval arg('config') == 'real')">
+  </include>
+  <include file="$(find o2as_examples)/launch/connect_aist_robots.launch"
+	   if="$(eval arg('config') == 'aist')">
+  </include>
+  <include file="$(find o2as_examples)/launch/connect_osaka_robots.launch"
+	   if="$(eval arg('config') == 'osaka')">
+  </include>
+
+  <include file="$(find o2as_moveit_config)/launch/o2as_moveit_planning_execution.launch">
+    <arg name="sim" value="true"  if    ="$(eval arg('config') == 'sim')"/>
+    <arg name="sim" value="false" unless="$(eval arg('config') == 'sim')"/>
+  </include>
+  <include file="$(find o2as_skills)/launch/o2as_skill_server.launch"/>
+
+  <!-- Start easy_handeye calibrator -->
+  <include file="$(find o2as_easy_handeye)/launch/calibrate.launch">
+    <arg name="namespace_prefix"	value="$(arg namespace_prefix)"/>
+    <arg name="eye_on_hand"		value="$(arg eye_on_hand)"/>
+    <arg name="tracking_base_frame"	value="camera_link"/>
+    <arg name="tracking_marker_frame"	value="camera_marker"/>
+    <arg name="robot_base_frame"	value="$(arg robot_name)_base_link"/>
+    <arg name="robot_effector_frame"	value="$(arg robot_effector_frame)"/>
+
+    <arg name="freehand_robot_movement"	value="true"/>
+    <arg name="robot_velocity_scaling"	value="0.5"/>
+    <arg name="robot_acceleration_scaling" value="0.2"/>
+
+    <arg name="move_group"		value="$(arg move_group)"/>
+  </include>
+
+  <!-- Start rqt_reconfigure -->
+  <node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure"/>
+</launch>

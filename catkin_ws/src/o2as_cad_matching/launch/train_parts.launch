@@ -1,0 +1,46 @@
+<!--
+Models
+==================================================================================================================
+    Train Search   ModelName                       Description
+==================================================================================================================
+    OK    OK       00_holder                       Test parts
+    OK    OK       01-BASE                         Base Panel
+    OK    OK       02-PANEL                        Output shaft fixing plate
+    OK    OK       03-PANEL2                       Motor fixing plate
+    OK    OK       04_37D-GEARMOTOR-50-70          Geared motor (Gear ratio 1:70)
+    OK    OK       05_MBRFA30-2-P6                 Pulley for Round Belt (4mm) - Setscrew P.D. 30mm
+    OK    *1       06_MBT4-400                     Polyurethane round belt （welded joint product) P.D. 4mm L=400mm
+    OK    OK       07_SBARB6200ZZ-30               Bearings with Housings (Double Bearings)
+    OK    *2       08_KZAF10-75-NA4-WA55-GA20-AA0  Drive shaft (Straight) D10h6
+    OK    *2       09_EDCS10                       End Cap for Shaft
+    OK    *2       10_CLBPS10-17-4                 Bearing Spacers For Inner Ring (output pulley)
+    OK    OK       11_MBRAC60-2-10                 Pulley for Round Belts Clamping Type P.D. 60mm
+    OK    *2       12_CLBUS6-9-9.5                 Bearing Spacers For Inner Ring (tension pulley)
+    OK    OK       13_MBGA30-2                     Idler for Round Belt - Wide
+    OK    *2       14_BGPSL6-9-L30-F8              Bearing Shaft Screw
+    OK    *2       15_SLBNR6                       M6 Hex Nut  (Fixing for idler shaft)
+    OK    *2       16_SPWF6                        M6 Flat Washer  (Fixing for idler shaft)
+    OK    *2       17_SCB4-10                      10mm M4 Socket Head Cap Screw  (metric coarse thread)
+    NG    NG       18_SCB3-10                      10mm M3 Socket Head Cap Screw  (metric coarse thread)
+    NG    NG       19_MSSFS3-6                     6mm M3 Hex Socket Set Screw  (metric coarse thread)
+==================================================================================================================
+          *1: Not tested
+          *2: Difficult
+-->
+
+<launch>
+    <arg name="camera_type" default=""/>                <!-- "phoxi", "realsense", ... -->
+    <arg name="camera_serial_number" default=""/>       <!-- check your camera device -->
+    <arg name="camera_name" default=""/>                <!-- "phoxi", "b_bot_camera", ... -->
+    <arg name="parts_list_filename" default=""/>        <!-- "assembly_parts_list.yaml, assembly_parts_list_surprize.yaml, ..." -->
+
+    <include file="$(find omron_cad_matching)/launch/train_multi_separate.launch">
+        <arg name="camera_name" value="$(arg camera_name)"/>
+        <arg name="parts_list_filename" value="$(arg parts_list_filename)"/>
+        <arg name="train_setting_filename" value="$(find o2as_cad_matching)/data/setting/$(arg camera_name)_train_setting.yaml"/>
+        <arg name="camera_setting_filename" value="$(find o2as_cad_matching)/data/camera_info/$(arg camera_type)_$(arg camera_serial_number).yaml"/>
+        <arg name="conf_dir" value="$(find o2as_cad_matching)/data/object_config"/>
+        <arg name="cad_dir" value="$(find o2as_parts_description)/meshes"/>
+        <arg name="model_dir" value="$(find o2as_cad_matching)/data/model"/>
+    </include>
+</launch>

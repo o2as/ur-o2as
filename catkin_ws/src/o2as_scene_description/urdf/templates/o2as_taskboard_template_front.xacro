@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="task_board">
+
+  <xacro:macro name="task_board" params="boardname parent *origin">
+  <xacro:property name="mesh_file" value="package://o2as_scene_description/meshes/taskBoard.STL" />
+
+  <link name="${boardname}">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0.03"/>
+      <mass value="1.0"/>
+      <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.03"/>
+      <geometry>
+        <mesh filename="${mesh_file}" scale="1 1 1"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.03"/>
+      <geometry>
+        <mesh filename="${mesh_file}" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="${boardname}" type="fixed">
+    <parent link="${parent}" />
+    <child link = "${boardname}" />
+    <xacro:insert_block name="origin"/>
+  </joint>
+
+  <joint name="${boardname}_surface" type="fixed">
+    <parent link="${boardname}" />
+    <child link = "${boardname}_surface"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.04"/>
+  </joint>
+  <link name="${boardname}_surface"/>
+
+  <joint name="${boardname}_corner1" type="fixed">
+    <parent link="${boardname}_surface"/>
+    <child link="${boardname}_corner1"/>
+    <origin rpy="0.0 0.0 ${pi/2}" xyz="0.01 0.39 0.0"/>
+  </joint>
+  <link name="${boardname}_corner1"/>
+
+  <joint name="${boardname}_corner2" type="fixed">
+    <parent link="${boardname}_surface"/>
+    <child link="${boardname}_corner2"/>
+    <origin rpy="0.0 0.0 ${pi/2}" xyz="0.39 0.39 0.0"/>
+  </joint>
+  <link name="${boardname}_corner2"/> 
+  <joint name="${boardname}_corner3" type="fixed">
+    <parent link="${boardname}_surface"/>
+    <child link="${boardname}_corner3"/>
+    <origin rpy="0.0 0.0 ${pi/2}" xyz="0.39 0.01 0.0"/>
+  </joint>
+  <link name="${boardname}_corner3"/> 
+  <joint name="${boardname}_corner4" type="fixed">
+    <parent link="${boardname}_surface"/>
+    <child link="${boardname}_corner4"/>
+    <origin rpy="0.0 0.0 ${pi/2}" xyz="0.01 0.01 0.0"/>
+  </joint>
+  <link name="${boardname}_corner4"/> 
+

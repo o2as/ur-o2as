@@ -1,0 +1,21 @@
+<launch>
+    <!-- server node -->
+    <include file="$(find omron_cad_matching)/launch/search_server.launch"/>
+
+    <!-- client node -->
+    <arg name="parts_name" default="pipe"/>
+    <arg name="model_filename" default="$(find omron_cad_matching)/data/model/$(arg parts_name).dat"/>
+    <arg name="search_param_filename" default="$(find omron_cad_matching)/data/setting/search_param.yaml"/>
+    <arg name="pcloud_filename" default="$(find omron_cad_matching)/data/image/$(arg parts_name)_test000.dat"/>
+    <arg name="image_filename" default="$(find omron_cad_matching)/data/image/$(arg parts_name)_test000.png"/>
+    <arg name="mask_filename" default="$(find omron_cad_matching)/data/image/$(arg parts_name)_test000_mask.png"/>
+
+    <node name="search_client" pkg="omron_cad_matching" type="search_single.py" output="screen">
+        <param name="model_filename" type="string" value="$(arg model_filename)"/>
+        <param name="search_param_filename" type="string" value="$(arg search_param_filename)"/>
+        <param name="pcloud_filename" type="string" value="$(arg pcloud_filename)"/>
+        <param name="image_filename" type="string" value="$(arg image_filename)"/>
+        <param name="mask_filename" type="string" value="$(arg mask_filename)"/>
+    </node>
+
+</launch>

@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <arg name="robot_name" default="b_bot"/>
+  <arg name="camera_name" default="a_phoxi_m_camera"/>
+  <arg name="eye_on_hand" default="false"/>
+  <arg name="robot_base_frame" default="$(arg robot_name)_base_link"/>
+  <arg name="robot_effector_frame" default="$(arg robot_name)_ee_link"/>
+  <arg name="image_dir" default="$(find o2as_calibration)/data/image"/>
+
+  <!-- Start calibration -->
+  <node name="calibration" pkg="o2as_calibration" type="run_handeye_calibration.py" 
+      args="$(arg camera_name) $(arg robot_name)" output="screen">
+    <param name="eye_on_hand" type="string" value="$(arg eye_on_hand)"/>
+    <param name="robot_base_frame" type="string" value="$(arg robot_base_frame)"/>
+    <param name="robot_effector_frame" type="string" value="$(arg robot_effector_frame)"/>
+    <param name="image_dir" type="string" value="$(arg image_dir)"/>
+  </node>
+
+</launch>

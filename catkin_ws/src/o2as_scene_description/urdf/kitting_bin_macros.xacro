@@ -1,0 +1,237 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="kitting_bin">
+  
+  <!-- z-origin-offset should be set such that the frame is on the surface of the bin -->
+  <xacro:macro name="kitting_bin_internal" params="binname parent filename z_origin_offset *origin">
+    <xacro:property name="mesh_file" value="package://o2as_scene_description/meshes/${filename}.stl" />
+    <xacro:property name="mesh_file_col" value="package://o2as_scene_description/meshes/${filename}.vhacd.dae" />
+
+    <link name="${binname}">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 ${z_origin_offset}"/>
+        <mass value="1.0"/>
+        <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0"/>
+      </inertial>
+      <visual>
+        <origin rpy="${pi/2} 0 ${-pi/2}" xyz="0 0 ${z_origin_offset}"/>
+        <geometry>
+          <mesh filename="${mesh_file}" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="orange">
+          <color rgba="1 0.5088 0.0468 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="${pi/2} 0 ${-pi/2}" xyz="0 0 ${z_origin_offset}"/>
+        <geometry>
+          <mesh filename="${mesh_file_col}" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+    <gazebo reference="${binname}">
+      <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <joint name="${binname}" type="fixed">
+      <parent link="${parent}" />
+      <child link = "${binname}" />
+      <xacro:insert_block name="origin"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="kitting_bin_1" params="binname parent z_origin_offset *origin">
+    <xacro:kitting_bin_internal binname="${binname}" parent="${parent}" filename="bin1_EA661CA-11" z_origin_offset="${z_origin_offset}">
+      <xacro:insert_block name="origin"/>
+    </xacro:kitting_bin_internal>
+    <xacro:property name="bin1_half_width" value="0.055"/>
+    <xacro:property name="bin1_half_length" value="0.055"/>
+    <xacro:property name="bin1_height_internal" value=".05" />
+
+    <joint name="${binname}_bottom_front_right_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_bottom_front_right_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${bin1_half_length-.015} ${bin1_half_width} 0.0 "/>
+    </joint>
+    <link name="${binname}_bottom_front_right_corner"/>
+
+    <joint name="${binname}_bottom_back_right_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_bottom_back_right_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${-bin1_half_length} ${bin1_half_width} 0.0 "/>
+    </joint>
+    <link name="${binname}_bottom_back_right_corner"/>
+
+    <joint name="${binname}_bottom_back_left_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_bottom_back_left_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${-bin1_half_length} ${-bin1_half_width} 0.0 "/>
+    </joint>
+    <link name="${binname}_bottom_back_left_corner"/>
+
+    <joint name="${binname}_bottom_front_left_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_bottom_front_left_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${bin1_half_length-.015} ${-bin1_half_width} 0.0 "/>
+    </joint>
+    <link name="${binname}_bottom_front_left_corner"/>
+
+    <joint name="${binname}_top_front_right_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_top_front_right_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${bin1_half_length -.015} ${bin1_half_width} ${bin1_height_internal} "/>
+    </joint>
+    <link name="${binname}_top_front_right_corner"/>
+
+    <joint name="${binname}_top_back_right_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_top_back_right_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${-bin1_half_length} ${bin1_half_width} ${bin1_height_internal} "/>
+    </joint>
+    <link name="${binname}_top_back_right_corner"/>
+
+    <joint name="${binname}_top_back_left_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_top_back_left_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${-bin1_half_length} ${-bin1_half_width} ${bin1_height_internal} "/>
+    </joint>
+    <link name="${binname}_top_back_left_corner"/>
+
+    <joint name="${binname}_top_front_left_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_top_front_left_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${bin1_half_length-.015} ${-bin1_half_width} ${bin1_height_internal} "/>
+    </joint>
+    <link name="${binname}_top_front_left_corner"/>
+  </xacro:macro>
+
+  <xacro:macro name="kitting_bin_2" params="binname parent z_origin_offset *origin">
+    <xacro:kitting_bin_internal binname="${binname}" parent="${parent}" filename="bin2_SK-HL1-BL" z_origin_offset="${z_origin_offset}">
+      <xacro:insert_block name="origin"/>
+    </xacro:kitting_bin_internal>
+    <xacro:property name="bin2_half_width" value="0.045"/>
+    <xacro:property name="bin2_half_length" value="0.09"/>
+    <xacro:property name="bin2_height_internal" value=".07" />
+
+    <joint name="${binname}_bottom_front_right_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_bottom_front_right_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${bin2_half_length-.02} ${bin2_half_width} 0.0 "/>
+    </joint>
+    <link name="${binname}_bottom_front_right_corner"/>
+
+    <joint name="${binname}_bottom_back_right_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_bottom_back_right_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${-bin2_half_length} ${bin2_half_width} 0.0 "/>
+    </joint>
+    <link name="${binname}_bottom_back_right_corner"/>
+
+    <joint name="${binname}_bottom_back_left_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_bottom_back_left_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${-bin2_half_length} ${-bin2_half_width} 0.0 "/>
+    </joint>
+    <link name="${binname}_bottom_back_left_corner"/>
+
+    <joint name="${binname}_bottom_front_left_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_bottom_front_left_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${bin2_half_length-.02} ${-bin2_half_width} 0.0 "/>
+    </joint>
+    <link name="${binname}_bottom_front_left_corner"/>
+
+    <joint name="${binname}_top_front_right_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_top_front_right_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${bin2_half_length-.02} ${bin2_half_width} ${bin2_height_internal} "/>
+    </joint>
+    <link name="${binname}_top_front_right_corner"/>
+
+    <joint name="${binname}_top_back_right_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_top_back_right_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${-bin2_half_length} ${bin2_half_width} ${bin2_height_internal} "/>
+    </joint>
+    <link name="${binname}_top_back_right_corner"/>
+
+    <joint name="${binname}_top_back_left_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_top_back_left_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${-bin2_half_length} ${-bin2_half_width} ${bin2_height_internal} "/>
+    </joint>
+    <link name="${binname}_top_back_left_corner"/>
+
+    <joint name="${binname}_top_front_left_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_top_front_left_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${bin2_half_length-.02} ${-bin2_half_width} ${bin2_height_internal} "/>
+    </joint>
+    <link name="${binname}_top_front_left_corner"/>
+  </xacro:macro>
+
+  <xacro:macro name="kitting_bin_3" params="binname parent z_origin_offset *origin">
+    <xacro:kitting_bin_internal binname="${binname}" parent="${parent}" filename="bin3_T3-YG" z_origin_offset="${z_origin_offset}">
+      <xacro:insert_block name="origin"/>
+    </xacro:kitting_bin_internal>
+    <xacro:property name="bin3_half_width" value="0.078"/>
+    <xacro:property name="bin3_half_length" value="0.13"/>
+    <xacro:property name="bin3_height_internal" value=".09" />
+
+    <joint name="${binname}_bottom_front_right_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_bottom_front_right_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${bin3_half_length-.045} ${bin3_half_width} 0.0 "/>
+    </joint>
+    <link name="${binname}_bottom_front_right_corner"/>
+
+    <joint name="${binname}_bottom_back_right_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_bottom_back_right_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${-bin3_half_length} ${bin3_half_width} 0.0 "/>
+    </joint>
+    <link name="${binname}_bottom_back_right_corner"/>
+
+    <joint name="${binname}_bottom_back_left_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_bottom_back_left_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${-bin3_half_length} ${-bin3_half_width} 0.0 "/>
+    </joint>
+    <link name="${binname}_bottom_back_left_corner"/>
+
+    <joint name="${binname}_bottom_front_left_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_bottom_front_left_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${bin3_half_length-.045} ${-bin3_half_width} 0.0 "/>
+    </joint>
+    <link name="${binname}_bottom_front_left_corner"/>
+
+    <joint name="${binname}_top_front_right_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_top_front_right_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${bin3_half_length-.045} ${bin3_half_width} ${bin3_height_internal} "/>
+    </joint>
+    <link name="${binname}_top_front_right_corner"/>
+
+    <joint name="${binname}_top_back_right_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_top_back_right_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${-bin3_half_length} ${bin3_half_width} ${bin3_height_internal} "/>
+    </joint>
+    <link name="${binname}_top_back_right_corner"/>
+
+    <joint name="${binname}_top_back_left_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_top_back_left_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${-bin3_half_length} ${-bin3_half_width} ${bin3_height_internal} "/>
+    </joint>
+    <link name="${binname}_top_back_left_corner"/>
+
+    <joint name="${binname}_top_front_left_corner_joint" type="fixed">
+      <parent link="${binname}"/>
+      <child link="${binname}_top_front_left_corner"/>
+      <origin rpy="0.0 0.0 0.0" xyz="${bin3_half_length-.045} ${-bin3_half_width} ${bin3_height_internal} "/>
+    </joint>
+    <link name="${binname}_top_front_left_corner"/>
+  </xacro:macro>
+
+</robot>

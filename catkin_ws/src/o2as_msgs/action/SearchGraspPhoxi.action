@@ -1,0 +1,15 @@
+# Request
+int8 part_id
+string bin_name
+string gripper_type # 'suction' or 'two_finger' or 'inner'
+bool update_image # If True, get depth image from sensor before calling fge
+---
+# Response
+bool success
+int32 result_num
+geometry_msgs/Point[] pos3D
+geometry_msgs/Point[] rot3D # surface normal
+float32[] rotipz # gripper rotation
+---
+# Feedback
+bool running

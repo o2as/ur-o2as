@@ -1,0 +1,4 @@
+string cloud_filename   # filename of the point cloud
+string image_filename   # filename of the texture image
+---
+bool success

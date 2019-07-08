@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <!-- args -->
+  <arg name="robot_name" default="a_bot"/>  <!-- "a_bot", "b_bot", or "c_bot" -->
+  <arg name="camera_name" default="a_bot_camera"/>  <!-- "a_bot_camera", "b_bot_camera", or "c_bot_camera" -->
+  <arg name="eye_on_hand" default="true"/>
+  <arg name="config" default="real"/> <!-- "sim", "real", "osaka", or "aist" -->
+
+	<!-- Start camera -->
+	<!-- <arg name="camera_serial_number" default="627201001218"/>
+	<include file="$(find o2as_realsense_camera)/launch/camera.launch">
+		<arg name="serial_number" value="$(arg camera_serial_number)"/>
+		<arg name="camera_name" default="$(arg camera_name)"/>
+        <arg name="trigger_mode" value="false"/>
+        <arg name="send_color" value="true"/>
+        <arg name="send_depth" value="false"/>
+        <arg name="send_cloud" value="true"/>
+	</include>
+  <node name="image_view" pkg="image_view" type="image_view" args="image:=/a_bot_camera/color/image_raw"/> -->
+
+	<!-- Start cad matching -->
+	<!-- <include file="$(find o2as_cad_matching)/launch/search_server.launch"/>
+	<node name="data_collection_server" pkg="omron_cad_matching" type="data_collection_server" output="screen"/>
+	<node name="reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure"/> -->
+
+	<!-- ar marker detection server -->
+	<arg name="marker_id" default="26"/>
+	<arg name="marker_size" default="0.16"/>
+  <arg name="camera_info" value="/$(arg camera_name)/color/camera_info"/>
+  <arg name="image_topic" value="/$(arg camera_name)/color/image_raw"/>
+	<include file="$(find o2as_aruco_marker_detection)/launch/marker_detection.launch">
+		<arg name="markerId" value="$(arg marker_id)"/>
+		<arg name="markerSize" value="$(arg marker_size)"/>
+		<arg name="camera_info" value="$(arg camera_info)"/>
+		<arg name="image_topic" value="$(arg image_topic)"/>
+	</include>
+	<node name="debug_view" pkg="image_view" type="image_view" args="image:=/marker_detector/debug"/>
+	<node name="result_view" pkg="image_view" type="image_view" args="image:=/marker_detector/result"/>
+
+  <!-- Start robot controller -->
+  <!-- <include file="$(find o2as_calibration)/launch/robot_control.launch">
+    <arg name="config" value="$(arg config)"/>
+  </include> -->
+
+  <!-- Start calibrator -->
+  <node name="hand_eye_solver" pkg="visp_hand2eye_calibration" type="visp_hand2eye_calibration_calibrator">
+    <remap from="/compute_effector_camera_quick" to="compute_effector_camera_quick"/>
+    <param name="eye_on_hand" type="bool" value="$(arg eye_on_hand)"/>
+  </node>
+
+</launch>

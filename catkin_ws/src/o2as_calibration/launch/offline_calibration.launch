@@ -1,0 +1,17 @@
+<launch>
+
+  <arg name="namespace" value="o2as"/>
+  <!-- <arg name="sample_filename" default="$(find o2as_calibration)/data/image/samples_phoxi.csv"/> -->
+  <!-- <arg name="sample_filename" default="$(find o2as_calibration)/data/image/calibration_2d.csv"/> -->
+  <arg name="sample_filename" default="$(find o2as_calibration)/data/image/calibration_3d.csv"/>
+
+  <node ns="$(arg namespace)" name="hand_eye_solver" pkg="visp_hand2eye_calibration" type="visp_hand2eye_calibration_calibrator">
+    <remap from="/compute_effector_camera_quick" to="compute_effector_camera_quick"/>
+  </node>
+
+  <node ns="$(arg namespace)" name="offline_calibrator" pkg="o2as_calibration" type="offline_calibration.py" output="screen">
+    <param name="sample_filename" value="$(arg sample_filename)"/>
+    <param name="eye_on_hand" value="true"/>
+  </node>>
+
+</launch>

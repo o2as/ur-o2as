@@ -1,0 +1,4 @@
+<?xml version="1.0" ?>
+<launch>
+  <node name="o2as_bg_ratio_server" pkg="o2as_bg_ratio" type="o2as_bg_ratio_server.py"/>
+</launch>

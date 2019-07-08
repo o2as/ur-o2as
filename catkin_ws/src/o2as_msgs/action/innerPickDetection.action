@@ -1,0 +1,12 @@
+# Request
+uint8 part_id
+bool saveROIImage
+
+---
+# Results
+bool picked
+bool success
+
+---
+# Feedback
+bool f

@@ -1,0 +1,5 @@
+string point_cloud_filename   # filename of the point cloud
+string depth_image_filename   # filename of the depth image
+string color_image_filename   # filename of the color image
+---
+bool success

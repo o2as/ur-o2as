@@ -1,0 +1,14 @@
+<launch>
+    <!-- ip:169.254.6.175 -->
+    <arg name="id" default="2018-03-027-LC3"/>
+    <arg name="trigger_mode" default="1"/>
+    <node name="o2as_phoxi_camera" pkg="o2as_phoxi_camera" type="o2as_phoxi_camera" output="screen">
+        <param name="id" value="$(arg id)"/>
+        <param name="trigger_mode" value="$(arg trigger_mode)"/>
+    </node>
+
+    <arg name="image_dir" default="$(find o2as_phoxi_camera)/image"/>
+    <node name="calibration" pkg="o2as_phoxi_camera" type="o2as_phoxi_camera_calibration.py" output="screen">
+	    <param name="image_dir" type="string" value="$(arg image_dir)"/>
+    </node>
+</launch>

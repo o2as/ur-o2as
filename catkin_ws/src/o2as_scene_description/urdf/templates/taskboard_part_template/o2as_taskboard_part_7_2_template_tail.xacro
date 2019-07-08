@@ -1,0 +1,13 @@
+  <link name="${boardname}_part7_2">
+    <visual>
+      <origin xyz="0.0015 0 -0.0125" rpy="0 0 ${pi/2}"/>
+      <geometry>
+        <box size=".025 0.003 .076"/> 
+      </geometry>
+      <material name="grey">
+        <color rgba=".3 .3 .3 1"/>
+      </material>
+    </visual>
+  </link>
+  <!-- ======== -->
+

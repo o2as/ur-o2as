@@ -1,0 +1,8 @@
+<launch>
+	<arg name="image_dir" default="$(find omron_cad_matching)/data/image"/>
+	<arg name="search_param_filename" default="$(find omron_cad_matching)/data/setting/search_param.yaml"/>
+	<node name="search_server" pkg="omron_cad_matching" type="search_server" output="screen">
+		<param name="image_dir" type="string" value="$(arg image_dir)"/>
+		<rosparam command="load" file="$(arg search_param_filename)"/>
+	</node>
+</launch>

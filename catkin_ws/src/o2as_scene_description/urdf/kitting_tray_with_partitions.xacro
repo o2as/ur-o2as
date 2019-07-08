@@ -1,0 +1,274 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="kitting_tray2_o2as">
+  
+  <!-- ========== This file defines the trays for the assembly and kitting task -->
+
+  <xacro:property name="tray_width" value=".300" />
+  <xacro:property name="tray_length" value=".210" />
+  <xacro:property name="mesh_offset_x" value="-.045" />
+  <xacro:property name="mesh_offset_y" value=".045" />
+
+  <!-- ========== The basic tray, without partitions -->
+  <xacro:macro name="kitting_tray" params="trayname parent *origin">
+    <xacro:property name="mesh_file" value="package://o2as_scene_description/meshes/tray_PZ-0006-B.stl" />
+    <xacro:property name="mesh_file_col" value="package://o2as_scene_description/meshes/tray_PZ-0006-B.vhacd.dae" />
+
+    <link name="${trayname}">
+      <inertial>
+        <origin rpy="0 0 0" xyz="${tray_width/2} ${tray_length/2} 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0"/>
+      </inertial>
+      <visual>
+        <origin rpy="${pi/2} 0 ${pi/2}" xyz="${tray_width/2 +mesh_offset_x} ${tray_length/2 + mesh_offset_y} 0"/>
+        <geometry>
+          <mesh filename="${mesh_file}" scale="0.001 0.001 0.001"/>
+          <!-- <mesh filename="package://ur_description/meshes/ur5/visual/shoulder.dae"/> -->
+        </geometry>
+        <material name="white">
+          <color rgba="1 1 1 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="${pi/2} 0 ${pi/2}" xyz="${tray_width/2 +mesh_offset_x} ${tray_length/2 + mesh_offset_y} 0"/>
+        <geometry>
+          <mesh filename="${mesh_file_col}" scale="0.001 0.001 0.001"/>
+          <!-- <mesh filename="package://ur_description/meshes/ur5/collision/shoulder.stl"/> -->
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${trayname}" type="fixed">
+      <parent link="${parent}" />
+      <child link = "${trayname}" />
+      <xacro:insert_block name="origin"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- ========== -->
+
+  <!-- ========== The partitions as separate macros -->
+
+  <xacro:macro name="tray_contents" params="trayname contents *origin">
+    <link name="${trayname}_${contents}">
+      <visual>
+	<xacro:insert_block name="origin"/>
+	<geometry>
+          <mesh filename="package://o2as_scene_description/meshes/${contents}.stl" scale="0.001 0.001 0.001" />
+	</geometry>
+	<material name="white">
+          <color rgba="1 1 1 1"/>
+	</material>
+      </visual>
+      <collision>
+        <xacro:insert_block name="origin"/>
+        <geometry>
+          <mesh filename="package://o2as_scene_description/meshes/${contents}.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${trayname}_${contents}_joint" type="fixed">
+      <parent link="${trayname}" />
+      <child  link="${trayname}_${contents}" />
+    </joint>
+  </xacro:macro>
+
+
+  <!-- ========== A helper macro for readability in the screw holder definition -->
+  <xacro:macro name="auxiliary_frame" params="parent framename *origin">
+    <joint name="${parent}_${framename}" type="fixed">
+      <parent link="${parent}" />
+      <child link = "${parent}_${framename}"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+    <link name="${parent}_${framename}"/>
+  </xacro:macro>
+
+
+  <xacro:property name="dividers_z_offset" value="0.0" />
+
+  <!-- ========== The tray with the belt and motor -->
+  <xacro:macro name="kitting_tray1" params="trayname parent *origin">
+    <xacro:kitting_tray trayname="${trayname}" parent="${parent}">
+      <xacro:insert_block name="origin"/>
+    </xacro:kitting_tray>
+
+    <xacro:tray_contents trayname="${trayname}" contents="divider1_1">
+      <origin xyz="${tray_width/2 + mesh_offset_x - 0.095} ${tray_length/2 + mesh_offset_y + 0.14} ${dividers_z_offset}" rpy="0 0 ${-pi/2}"/>
+    </xacro:tray_contents>
+
+    <xacro:tray_contents trayname="${trayname}" contents="divider1_2">
+      <origin xyz="${tray_width/2 + mesh_offset_x - 0.095} ${tray_length/2 + mesh_offset_y -0.062} ${dividers_z_offset}" rpy="0 0 ${-pi/2}"/>
+    </xacro:tray_contents>
+
+    <!-- ========== The extra frames to place and pick items are defined below -->
+    <xacro:auxiliary_frame parent="${trayname}" framename="partition_1">
+      <origin rpy="0.0 0.0 0.0" xyz="0.06 0.05 0.02"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="partition_2">
+      <origin rpy="0.0 0.0 0.0" xyz="0.16 0.05 0.02"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="partition_3">
+      <origin rpy="0.0 0.0 0.0" xyz="0.11 0.16 0.02"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="partition_4">
+      <origin rpy="0.0 0.0 0.0" xyz="0.07 0.26 0.02"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="partition_5">
+      <origin rpy="0.0 0.0 0.0" xyz="0.16 0.26 0.02"/>
+    </xacro:auxiliary_frame>
+    
+    <xacro:auxiliary_frame parent="${trayname}_partition_1" framename="pickup">
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}_partition_2" framename="pickup">
+      <origin rpy="0.0 0.0 0.0" xyz="0 0 0"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}_partition_3" framename="pickup">
+      <origin rpy="0.0 0.0 0" xyz="-.05 0 0"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}_partition_4" framename="pickup">
+      <origin rpy="0.0 ${pi*80/180} ${pi*20/180}" xyz="0.03 -.01 0.02"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}_partition_5" framename="pickup">
+      <origin rpy="0.0 0.0 0" xyz="-.02 -.01 0"/>
+    </xacro:auxiliary_frame>
+  </xacro:macro>
+
+
+  <!-- ========== The tray with the screws and small parts -->
+  <xacro:macro name="kitting_tray2" params="trayname parent *origin">
+    <xacro:kitting_tray trayname="${trayname}" parent="${parent}">
+      <xacro:insert_block name="origin"/>
+    </xacro:kitting_tray>
+
+    <xacro:tray_contents trayname="${trayname}" contents="divider2">
+      <origin xyz="${tray_width/2 + mesh_offset_x + 0.095} ${tray_length/2 + mesh_offset_y -0.14} ${dividers_z_offset}" rpy="${pi} ${pi} ${-pi/2}"/>
+    </xacro:tray_contents>
+
+    <xacro:tray_contents trayname="${trayname}" contents="screw_holder">
+      <origin xyz="${tray_width/2 + mesh_offset_x + 0.095} ${tray_length/2 + mesh_offset_y +0.05} ${dividers_z_offset}" rpy="${pi} ${pi} ${-pi/2}"/>
+    </xacro:tray_contents>
+
+    <!-- ========== The extra frames to place and pick items are defined below -->
+    <xacro:auxiliary_frame parent="${trayname}" framename="partition_1">
+      <origin rpy="0.0 0.0 0.0" xyz="0.17 0.1375 0.02"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="partition_2">
+      <origin rpy="0.0 0.0 0.0" xyz="0.105 0.1725 0.02"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="partition_3">
+      <origin rpy="0.0 0.0 0.0" xyz="0.04 0.1725 0.02"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="partition_4">
+      <origin rpy="0.0 0.0 0.0" xyz="0.105 0.1125 0.02"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="partition_5">
+      <origin rpy="0.0 0.0 0.0" xyz="0.04 0.1125 0.02"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="partition_6">
+      <origin rpy="0.0 0.0 0.0" xyz="0.17 0.0525 0.02"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="partition_7">
+      <origin rpy="0.0 0.0 0.0" xyz="0.105 0.0525 0.02"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="partition_8">
+      <origin rpy="0.0 0.0 0.0" xyz="0.04 0.0525 0.02"/>
+    </xacro:auxiliary_frame>    
+    
+    <!-- Frames used for picking up parts during assembly -->
+    <xacro:property name="partition_width" value="0.055"/>
+    <xacro:property name="partition_length" value="0.06"/>
+    <xacro:auxiliary_frame parent="${trayname}_partition_1" framename="pickup">
+      <origin rpy="0.0 0.0 ${-pi/4}" xyz="-.007 -.024 0"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}_partition_2" framename="pickup">
+      <origin rpy="0.0 0.0 0.0" xyz="${-partition_length/2 + .0015} ${-partition_width/2 + .0015} 0"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}_partition_3" framename="pickup">
+      <origin rpy="0.0 0.0 0.0" xyz="${partition_length/2 - .0045} ${-partition_width/2 + .0045} 0"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}_partition_4" framename="pickup">
+      <origin rpy="0.0 0.0 0.0" xyz="${-partition_length/2 + .007} ${partition_width/2 - .007} 0"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}_partition_5" framename="pickup">
+      <origin rpy="0.0 0.0 0.0" xyz="${partition_length/2 - .00475} ${partition_width/2 - .0055} 0"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}_partition_6" framename="pickup">
+      <origin rpy="0.0 0.0 0.0" xyz="${-partition_length/2 + .015} ${partition_width/2 - .015} 0"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}_partition_7" framename="pickup">
+      <origin rpy="0.0 0.0 0.0" xyz="${-partition_length/2 + .0085} ${partition_width/2 - .0085} 0"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}_partition_8" framename="pickup_1">
+      <origin rpy="0.0 0.0 0.0" xyz="${partition_length/2 - .006} ${partition_width/2 - .006} 0"/>
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}_partition_8" framename="pickup_2">
+      <origin rpy="0.0 0.0 0.0" xyz="${-partition_length/2 + .006} ${partition_width/2 - .006} 0"/>
+    </xacro:auxiliary_frame>
+
+    <xacro:property name="m4_x_0" value="0.04"/>
+    <xacro:property name="m4_x_delta" value="0.03"/>
+    <xacro:property name="m4_y_0" value="0.275"/>
+    <xacro:property name="m4_y_delta" value="-0.03"/>
+    <xacro:property name="m4_z_0" value="0.021"/>
+    
+    <xacro:auxiliary_frame parent="${trayname}" framename="screw_m4_1">
+      <origin xyz="${m4_x_0 + m4_x_delta*0} ${m4_y_0 + m4_y_delta*0} ${m4_z_0}" rpy="0 ${pi/2} 0" />   
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="screw_m4_2">
+      <origin xyz="${m4_x_0 + m4_x_delta*0} ${m4_y_0 + m4_y_delta*1} ${m4_z_0}" rpy="0 ${pi/2} 0" />   
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="screw_m4_3">
+      <origin xyz="${m4_x_0 + m4_x_delta*0} ${m4_y_0 + m4_y_delta*2} ${m4_z_0}" rpy="0 ${pi/2} 0" />   
+    </xacro:auxiliary_frame>
+
+    <xacro:auxiliary_frame parent="${trayname}" framename="screw_m4_4">
+      <origin xyz="${m4_x_0 + m4_x_delta*1} ${m4_y_0 + m4_y_delta*0} ${m4_z_0}" rpy="0 ${pi/2} 0" />   
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="screw_m4_5">
+      <origin xyz="${m4_x_0 + m4_x_delta*1} ${m4_y_0 + m4_y_delta*1} ${m4_z_0}" rpy="0 ${pi/2} 0" />   
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="screw_m4_6">
+      <origin xyz="${m4_x_0 + m4_x_delta*1} ${m4_y_0 + m4_y_delta*2} ${m4_z_0}" rpy="0 ${pi/2} 0" />   
+    </xacro:auxiliary_frame>
+
+    <xacro:auxiliary_frame parent="${trayname}" framename="screw_m4_7">
+      <origin xyz="${m4_x_0 + m4_x_delta*2} ${m4_y_0 + m4_y_delta*0} ${m4_z_0}" rpy="0 ${pi/2} 0" />   
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="screw_m4_8">
+      <origin xyz="${m4_x_0 + m4_x_delta*2} ${m4_y_0 + m4_y_delta*1} ${m4_z_0}" rpy="0 ${pi/2} 0" />   
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="screw_m4_9">
+      <origin xyz="${m4_x_0 + m4_x_delta*2} ${m4_y_0 + m4_y_delta*2} ${m4_z_0}" rpy="0 ${pi/2} 0" />   
+    </xacro:auxiliary_frame>
+
+    <xacro:property name="m3_x_0" value="0.14"/>
+    <xacro:property name="m3_x_delta" value="0.03"/>
+    <xacro:property name="m3_y_0" value="0.275"/>
+    <xacro:property name="m3_y_delta" value="-0.03"/>
+    <xacro:property name="m3_z_0" value="0.021"/>
+    
+    <xacro:auxiliary_frame parent="${trayname}" framename="screw_m3_1">
+      <origin xyz="${m3_x_0 + m3_x_delta*0} ${m3_y_0 + m3_y_delta*0} ${m3_z_0}" rpy="0 ${pi/2} 0" />   
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="screw_m3_2">
+      <origin xyz="${m3_x_0 + m3_x_delta*0} ${m3_y_0 + m3_y_delta*1} ${m3_z_0}" rpy="0 ${pi/2} 0" />   
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="screw_m3_3">
+      <origin xyz="${m3_x_0 + m3_x_delta*0} ${m3_y_0 + m3_y_delta*2} ${m3_z_0}" rpy="0 ${pi/2} 0" />   
+    </xacro:auxiliary_frame>
+
+    <xacro:auxiliary_frame parent="${trayname}" framename="screw_m3_4">
+      <origin xyz="${m3_x_0 + m3_x_delta*1} ${m3_y_0 + m3_y_delta*0} ${m3_z_0}" rpy="0 ${pi/2} 0" />   
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="screw_m3_5">
+      <origin xyz="${m3_x_0 + m3_x_delta*1} ${m3_y_0 + m3_y_delta*1} ${m3_z_0}" rpy="0 ${pi/2} 0" />   
+    </xacro:auxiliary_frame>
+    <xacro:auxiliary_frame parent="${trayname}" framename="screw_m3_6">
+      <origin xyz="${m3_x_0 + m3_x_delta*1} ${m3_y_0 + m3_y_delta*2} ${m3_z_0}" rpy="0 ${pi/2} 0" />   
+    </xacro:auxiliary_frame>
+  </xacro:macro>
+
+</robot>

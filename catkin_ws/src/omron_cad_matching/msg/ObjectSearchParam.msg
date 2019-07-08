@@ -1,0 +1,12 @@
+int32 model_id
+int32 min_lat
+int32 max_lat
+int32 min_lon
+int32 max_lon 
+int32 min_roll
+int32 max_roll
+int32 min_dist
+int32 max_dist
+int32 thresh_search
+float32 search_coef
+int32 max_result_num

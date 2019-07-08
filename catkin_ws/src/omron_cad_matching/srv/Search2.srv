@@ -1,0 +1,6 @@
+sensor_msgs/PointCloud2 pcloud
+sensor_msgs/Image image
+sensor_msgs/Image mask
+---
+omron_cad_matching/SearchResult search_result
+bool success

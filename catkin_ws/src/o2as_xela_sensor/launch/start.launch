@@ -1,0 +1,13 @@
+<launch>
+
+  <arg name="board_id" default="1"/>
+  <arg name="sensor_node" value="xela_sensor_$(arg board_id)"/>
+
+  <!-- sensor node -->
+  <include file="$(find o2as_xela_sensor)/launch/sensor.launch">
+    <arg name="board_id" value="$(arg board_id)"/>
+    <arg name="node_name" value="$(arg sensor_node)"/>
+    <!-- <arg name="frequency" value="$(arg sensor_node)"/> -->
+  </include>
+
+</launch>

@@ -1,0 +1,10 @@
+# Request
+int32 sample_num
+string log_filename
+---
+# Results
+bool success
+float32[] base
+---
+# Feedback
+bool f

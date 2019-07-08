@@ -1,0 +1,15 @@
+# TODO: This should be called when an item is grasped and to be aligned according to another item.
+# What does this action have to do? Only move a frame to a position?
+# This could be a prerequisite to the InsertAction
+
+
+# Request
+string frame_to_align
+geometry_msgs/PoseStamped target_frame
+string gripper                          # "a_bot", "b_bot", "c_bot", "suction"
+---
+# Result
+bool success
+---
+# Feedback
+float32 progress

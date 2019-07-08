@@ -1,0 +1,66 @@
+def SpiralMotion():
+    def spiral_motion(max_radius=5.0, radius_incr=0.3, speed=0.01, acceleration=0.6, spiral_axis="Z", theta_incr=30):
+        if (max_radius < 0.0005) or (max_radius > .01):
+            textmsg("ERROR: max_radius parameter in m must be between 0.0005 m and 0.01 m")
+        else:
+            spiral_axis_x = (spiral_axis=="X")
+            spiral_axis_y = (spiral_axis=="Y")
+            spiral_axis_z = (spiral_axis=="Z")
+
+            spiral_axis_yz = (spiral_axis=="YZ")
+
+            if (radius_incr < 0.0001) or (radius_incr > 0.005):
+                textmsg("ERROR: radius_incr parameter in m must be between 0.0001 m and .005 m")
+            else:
+                global max_radius_set = max_radius
+                # global theta_incr = 30  # Degrees
+                global radius_inc_set = radius_incr / (360 / theta_incr)
+                global r=0.0003  #Start radius
+                global z_insert_distance = 0.001  #in meter
+                global x=0
+                global y=0
+                global z=0
+                global pos=p[0,0,0,0,0,0]
+                global next_position=p[0,0,0,0,0,0]
+                global z_Insert=p[0,0,z_insert_distance,0,0,0]
+                global current_pos=p[0,0,0,0,0,0]
+                global theta=0
+                global RealRadius=0
+                global Search_result = False
+                sync()
+                #Find the bore of the part#
+                current_pos=get_actual_tcp_pose()
+                textmsg("Spiral search")
+                sync()
+                while ((RealRadius <= max_radius_set)):
+                    #standard method
+                    theta=theta+theta_incr
+                    x=cos(d2r(theta))*r
+                    y=sin(d2r(theta))*r
+                    if (spiral_axis_z):
+                        pos[0] = x
+                        pos[1] = y
+                    elif (spiral_axis_y):
+                        pos[2] = x
+                        pos[0] = y
+                    elif (spiral_axis_x):
+                        pos[1] = x
+                        pos[2] = y
+                    elif (spiral_axis_yz):
+                        pos[0] = x
+                        pos[1] = y/1.41
+                        pos[2] = y/1.41
+                    end
+                    r=r + radius_inc_set
+                    RealRadius = sqrt(pow(norm(x),2)+pow(norm(y),2))
+                    next_pos=pose_trans(current_pos,pos)
+                    movep(next_pos, a=acceleration, v=speed, r=0.0)
+                    sleep(0.02)  # Can this be tuned to go faster?
+                end
+                textmsg("Done")
+                return True
+            end
+        end
+    end
+
+    # Insert real program here.

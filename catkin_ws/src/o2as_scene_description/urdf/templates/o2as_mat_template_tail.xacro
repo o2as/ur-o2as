@@ -1,0 +1,30 @@
+    <joint name="${matname}_corner1" type="fixed">
+      <parent link="${matname}"/>
+      <child link="${matname}_corner1"/>
+      <origin rpy="0.0 0.0 ${pi/2}" xyz="0.01 0.01 0.06"/>
+    </joint>
+    <link name="${matname}_corner1"/>
+
+    <joint name="${matname}_corner2" type="fixed">
+      <parent link="${matname}"/>
+      <child link="${matname}_corner2"/>
+      <origin rpy="0.0 0.0 ${pi/2}" xyz="0.39 0.01 0.06"/>
+    </joint>
+    <link name="${matname}_corner2"/>
+
+    <joint name="${matname}_corner3" type="fixed">
+      <parent link="${matname}"/>
+      <child link="${matname}_corner3"/>
+      <origin rpy="0.0 0.0 ${pi/2}" xyz="0.39 0.39 0.06"/>
+    </joint>
+    <link name="${matname}_corner3"/>
+
+    <joint name="${matname}_corner4" type="fixed">
+      <parent link="${matname}"/>
+      <child link="${matname}_corner4"/>
+      <origin rpy="0.0 0.0 ${pi/2}" xyz="0.01 0.39 0.06"/>
+    </joint>
+    <link name="${matname}_corner4"/>
+
+  </xacro:macro>
+</robot>

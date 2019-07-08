@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package>
+  <name>urdf_converter</name>
+  <version>0.0.0</version>
+  <description>The urdf_converter package</description>
+
+  <maintainer email="f.drigalski@sinicx.com">Felix von Drigalski</maintainer>
+
+  <license>TODO</license>
+
+ 
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+
+  <build_depend>std_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <build_depend>moveit_msgs</build_depend>
+  <run_depend>moveit_msgs</run_depend>
+
+  <build_depend>urdf</build_depend>
+  <run_depend>urdf</run_depend>
+
+  <build_depend>roslib</build_depend>
+  <run_depend>roslib</run_depend>
+  
+  <build_depend>Eigen3</build_depend>
+  <run_depend>Eigen3</run_depend>
+
+  <build_depend>geometric_shapes</build_depend>
+  <run_depend>geometric_shapes</run_depend>
+
+  <build_depend>message_generation</build_depend>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  
+</package>

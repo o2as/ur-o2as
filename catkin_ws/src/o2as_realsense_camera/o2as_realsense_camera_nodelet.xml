@@ -1,0 +1,11 @@
+<library path="lib/libo2as_realsense_camera_nodelet">
+
+  <class name="o2as_realsense_camera/RealSenseCameraNodelet"
+         type="o2as::RealSenseCameraNodelet"
+	       base_class_type="nodelet::Nodelet">
+    <description>
+      Nodelet to measure the time of message passing between nodes.
+    </description>
+  </class>
+
+</library>

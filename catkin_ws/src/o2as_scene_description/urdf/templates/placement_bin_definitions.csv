@@ -1,0 +1,4 @@
+bin_type,Width,Length,Height,z_origin_offset
+bin1,0.125,0.128,.00,-.005
+bin2,0.112,0.201,0.32,-.008
+bin3,0.192,0.285,.01,-.004

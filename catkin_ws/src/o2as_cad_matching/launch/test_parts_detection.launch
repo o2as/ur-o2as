@@ -1,0 +1,7 @@
+<launch>
+
+	<include file="$(find o2as_cad_matching)/launch/search_server.launch"/>
+	<node name="search_demo" pkg="o2as_cad_matching" type="test_parts_detection.py"/>
+	<node name="reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure"/>
+	
+</launch>

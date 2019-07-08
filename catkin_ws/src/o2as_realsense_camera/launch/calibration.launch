@@ -1,0 +1,18 @@
+<launch>
+    <arg name="camera_name" default="camera"/>
+    <arg name="serial_number" default="616205004841"/> <!-- specify serial number of your camera -->
+
+    <include file="$(find o2as_realsense_camera)/launch/camera.launch">
+        <arg name="node_name" value="$(arg camera_name)"/>
+        <arg name="serial_number" value="$(arg serial_number)"/>
+        <arg name="trigger_mode" value="true"/>
+        <arg name="send_color" value="true"/>
+        <arg name="send_depth" value="true"/>
+        <arg name="send_cloud" value="true"/>
+    </include>
+
+    <node name="calibration" pkg="o2as_realsense_camera" type="calibration.py" output="screen">
+	    <param name="camera_node_name" type="string" value="$(arg camera_name)"/>
+	    <param name="image_dir" type="string" value="$(find o2as_realsense_camera)/image/"/>
+    </node>
+</launch>

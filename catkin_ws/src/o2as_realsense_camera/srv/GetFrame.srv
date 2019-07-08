@@ -1,0 +1,5 @@
+bool publish                          # If true, publishes the point cloud over a ros topic
+---
+sensor_msgs/Image color_image         # A synchronized color image.
+sensor_msgs/Image depth_image         # A synchronized depth image.
+sensor_msgs/PointCloud2 point_cloud   # A synchronized point cloud.

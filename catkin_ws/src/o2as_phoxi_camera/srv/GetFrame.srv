@@ -1,0 +1,9 @@
+int64 in
+bool publish                               # If true, publishes the point cloud over a ros topic
+---
+sensor_msgs/PointCloud2 cloud	           # A synchronized point cloud.
+sensor_msgs/Image normal_map               # A synchronized normal map.
+sensor_msgs/Image depth_map                # A synchronized depth map.
+sensor_msgs/Image confidence_map           # A synchronized confidence map.
+sensor_msgs/Image texture                  # A synchronized texture.
+bool success

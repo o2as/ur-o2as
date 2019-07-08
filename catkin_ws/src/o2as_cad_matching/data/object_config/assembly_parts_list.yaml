@@ -1,0 +1,23 @@
+parts_list:
+  - 01-BASE                         # Base Panel
+  - 02-PANEL                        # Output shaft fixing plate
+  - 03-PANEL2                       # Motor fixing plate
+  - 04_37D-GEARMOTOR-50-70          # Geared motor (Gear ratio 1:70)
+  - 05_MBRFA30-2-P6                 # Pulley for Round Belt (4mm) - Setscrew P.D. 30mm
+  - 06_MBT4-400                     # Polyurethane round belt （welded joint product) P.D. 4mm L=400mm
+  - 07_SBARB6200ZZ_30               # Bearings with Housings (Double Bearings)
+  - 08_KZAF1075NA4WA55GA20AA0       # Drive shaft (Straight) D10h6
+  - 09_EDCS10                       # End Cap for Shaft
+  - 10_CLBPS10_17_4                 # Bearing Spacers For Inner Ring (output pulley)
+  - 11_MBRAC60-2-10                 # Pulley for Round Belts Clamping Type P.D. 60mm
+  - 12_CLBUS6-9-9.5                 # Bearing Spacers For Inner Ring (tension pulley)
+  - 13_MBGA30-2                     # Idler for Round Belt - Wide
+  - 14_BGPSL6-9-L30-F8              # Bearing Shaft Screw
+  - 15_SLBNR6                       # M6 Hex Nut  (Fixing for idler shaft)
+  - 16_SPWF6                        # M6 Flat Washer  (Fixing for idler shaft)
+  - 17_SCB4-10                      # 10mm M4 Socket Head Cap Screw  (metric coarse thread)
+# - 18_SCB3-10                      # 10mm M3 Socket Head Cap Screw  (metric coarse thread)
+# - 19_MSSFS3-6                     # 6mm M3 Hex Socket Set Screw  (metric coarse thread)
+  - 100-ROBOTIQ_CALIB_MARKER        # Calilbration marker for ROBOTIQ gripper
+  - 101-SUCTION_CALIB_MARKER        # Calilbration marker for suction gripper
+  - 102_CalTarget15                 # Calilbration marker using 3D cad matching

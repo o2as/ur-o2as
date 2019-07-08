@@ -1,0 +1,21 @@
+<launch>
+    <!-- args -->
+    <arg name="node_name" default="search_single"/>
+    <arg name="parts_name" default="bolt"/>
+    <arg name="pcloud_filename" default="$(find omron_cad_matching)/data/image/$(arg parts_name)_test000.dat"/>
+    <arg name="image_filename" default="$(find omron_cad_matching)/data/image/$(arg parts_name)_test000.png"/>
+    <arg name="mask_filename" default="$(find omron_cad_matching)/data/image/$(arg parts_name)_test000_mask.dat"/>
+    <arg name="setting_filename" default="$(find omron_cad_matching)/data/camera_info/test.yaml"/>
+    <arg name="conf_filename" default="$(find omron_cad_matching)/data/object_config/$(arg parts_name).yaml"/>
+    <arg name="model_filename" default="$(find omron_cad_matching)/data/model/$(arg parts_name).dat"/>
+
+    <!-- search node -->
+    <node name="$(arg node_name)" pkg="omron_cad_matching" type="search" output="screen">
+        <param name="pcloud_filename" type="string" value="$(arg pcloud_filename)"/>
+        <param name="image_filename" type="string" value="$(arg image_filename)"/>
+        <param name="mask_filename" type="string" value="$(arg mask_filename)"/>
+        <param name="setting_filename" type="string" value="$(arg setting_filename)"/>
+        <param name="conf_filename" type="string" value="$(arg conf_filename)"/>
+        <param name="model_filename" type="string" value="$(arg model_filename)"/>
+    </node>
+</launch>

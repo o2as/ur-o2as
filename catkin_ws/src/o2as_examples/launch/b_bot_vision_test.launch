@@ -1,0 +1,10 @@
+<launch>
+	<include file="$(find o2as_moveit_config)/launch/demo.launch" />
+	<node name="o2as_skill_server" pkg="o2as_skills" type="o2as_skill_server" output="screen"/>
+	<include file="$(find o2as_vision)/launch/vision.launch" />
+
+	<arg name="parts_dict_filename" default="$(find o2as_assembly_task)/config/parts_dict.yaml"/>
+	<node name="b_bot_vision_test" pkg="o2as_assembly_task" type="b_bot_vision_test.py" output="screen">
+        <rosparam command="load" file="$(arg parts_dict_filename)"/>
+	</node>
+</launch>

@@ -1,0 +1,6 @@
+# This is used for o2as_usb_relay
+int32  port         
+bool   on           
+---
+bool   success
+string message

@@ -1,0 +1,6 @@
+string pcloud_filename
+string image_filename
+string mask_filename
+---
+o2as_cad_matching/DetectedObject[] objects
+bool success

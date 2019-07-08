@@ -1,0 +1,12 @@
+  <link name="${boardname}_part6_small_pulley">
+    <visual>
+      <origin xyz="0 0 -.00475" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length=".0085" radius=".016"/> 
+      </geometry>
+      <material name="grey">
+        <color rgba=".3 .3 .3 1"/>
+      </material>
+    </visual>
+  </link>
+

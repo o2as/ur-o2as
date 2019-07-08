@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<launch>
+  <remap from="/o2as_blob_detection/camera/color/image_raw" to= "/camera/color/image_raw"/>
+  <remap from="/o2as_blob_detection/camera/cloud" to= "/camera/cloud"/>
+  <node name="o2as_blob_detection" pkg="o2as_blob_detection" type="o2as_blob_detection.py" output = "screen"/>
+</launch>

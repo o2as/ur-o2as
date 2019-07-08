@@ -1,0 +1,6 @@
+sensor_msgs/PointCloud2 cloud
+sensor_msgs/Image image
+string cloud_filename
+string image_filename
+---
+bool success

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="robot_name"	default="b_bot" />
+  <arg name="camera_name"	default="a_phoxi_m_camera" />
+    
+  <arg name="eye_on_hand"	value="false"
+       unless="$(eval arg('camera_name') == 'a_bot_camera')" />
+  <arg name="eye_on_hand"	value="true"
+       if="$(eval arg('camera_name') == 'a_bot_camera')" />
+  
+  <arg name="camera_base_frame"	   value="a_phoxi_m_camera"
+       if="$(eval arg('camera_name') == 'a_phoxi_m_camera')" />
+  <arg name="camera_optical_frame" value="a_phoxi_m_sensor"
+       if="$(eval arg('camera_name') == 'a_phoxi_m_camera')" />
+  <arg name="camera_base_frame"	   value="a_bot_camera_link"
+       if="$(eval arg('camera_name') == 'a_bot_camera')" />
+  <arg name="camera_optical_frame" value="a_bot_camera_depth_optical_frame"
+       if="$(eval arg('camera_name') == 'a_bot_camera')" />
+
+  <!--it is possible to override the link names saved in the yaml file in case of name clashes, for example-->
+  <arg name="robot_effector_frame"	value=""
+       if="$(arg eye_on_hand)" />
+  <arg name="robot_effector_frame"	value="$(arg robot_name)_ee_link"
+       unless="$(arg eye_on_hand)"/>
+  <arg name="robot_base_frame"		value=""
+       unless="$(arg eye_on_hand)" />
+  <arg name="robot_base_frame"		value="$(arg robot_name)_base_link"
+       if="$(arg eye_on_hand)"/>
+  <arg name="tracking_base_frame"	default="" />
+    
+  <!--publish hand-eye calibration-->
+  <arg name="namespace_prefix"
+       default="o2as_easy_handeye_$(arg robot_name)" />
+  <arg name="namespace"		value="$(arg namespace_prefix)_eye_on_hand"
+       if="$(arg eye_on_hand)" />
+  <arg name="namespace"		value="$(arg namespace_prefix)_eye_on_base"
+       unless="$(arg eye_on_hand)" />
+
+  <group ns="$(arg namespace)">
+    <param name="eye_on_hand"		value="$(arg eye_on_hand)" />
+    <param name="camera_base_frame"	value="$(arg camera_base_frame)" />
+    <param name="camera_optical_frame"	value="$(arg camera_optical_frame)" />
+    <param name="robot_base_frame"	value="$(arg robot_base_frame)"
+	   unless="$(arg eye_on_hand)" />
+    <param name="robot_effector_frame"	value="$(arg robot_effector_frame)"
+	   if="$(arg eye_on_hand)" />
+    <param name="tracking_base_frame"
+	   value="camera_link_from_$(arg robot_name)_estimated" />
+    <param name="camera_body_frame"
+	   value="camera_body_from_$(arg robot_name)_estimated" />
+
+    <node  name="$(anon handeye_publisher)"
+	   pkg="o2as_easy_handeye" type="publish.py" output="screen"/>
+  </group>
+</launch>

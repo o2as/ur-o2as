@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="kitting_scene">
+  <xacro:include filename="$(find o2as_scene_description)/urdf/kitting_bins.xacro" />
+  <xacro:include filename="$(find o2as_scene_description)/urdf/kitting_tray_with_partitions.xacro" />
+  <xacro:include filename="$(find realsense2_camera)/urdf/_d435.urdf.xacro" />
+  <xacro:include filename="$(find o2as_scene_description)/urdf/o2as_box.xacro"/>
+
+
+  <!-- Screw feeders -->
+  <!-- <xacro:include filename="$(find o2as_scene_description)/urdf/screw_feeder.xacro" />
+  <xacro:screw_feeder feedername="m3_feeder" parent="c_bot_base_smfl">
+    <origin xyz=".66 -0.25 .065" rpy="0 0 ${pi/2}" />   
+  </xacro:screw_feeder>
+  <xacro:screw_feeder feedername="m4_feeder" parent="c_bot_base_smfl">
+    <origin xyz=".52 -0.25 .065" rpy="0 0 ${pi/2}" />   
+  </xacro:screw_feeder> -->
+
+  <!-- spawn and attach dual suction grippers (used for testing at AIST) -->
+  <!-- <xacro:include filename="$(find o2as_scene_description)/urdf/dual_suction_gripper.urdf.xacro" />
+  <xacro:dual_suction_gripper_o2as prefix="b_bot_" parent = "b_bot_ee_link">
+    <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+  </xacro:dual_suction_gripper_o2as> -->
+
+  <xacro:property name="tray_width" value=".300" />
+  <xacro:property name="tray_length" value=".210" />
+
+  <!-- add tray rack -->
+  <xacro:o2as_box boxname="rack_trays" box_w="0.21" box_l="0.60" box_h=".015" parent="workspace_center">
+    <origin xyz="-.33 -0.3 0" rpy="0 0 0" />   
+  </xacro:o2as_box>
+  <link name="rack_trays_center" />
+  <joint name="rack_trays_joint" type="fixed">
+    <parent link="workspace_center" />
+    <child link="rack_trays_center"/>
+    <origin xyz="-.13 0 0.015" rpy="0 0 0"/>
+  </joint>
+
+  <!-- add trays -->
+  <!-- Tray type 2 carries the screws -->
+  <xacro:kitting_tray2 trayname="set_1_tray_2" parent="rack_trays_center">
+    <origin xyz="+.01 0 0" rpy="0 0 ${pi}" />
+  </xacro:kitting_tray2>
+  <xacro:kitting_tray2 trayname="set_2_tray_2" parent="rack_trays_center">
+    <origin xyz="${tray_length+.02} 0 -.015" rpy="0 0 ${pi}" />
+  </xacro:kitting_tray2>
+  <xacro:kitting_tray2 trayname="set_3_tray_2" parent="rack_trays_center">
+    <origin xyz="${tray_length+.02} ${tray_width} -.015" rpy="0 0 ${pi}" />
+  </xacro:kitting_tray2>
+
+  <xacro:kitting_tray1 trayname="set_1_tray_1" parent="rack_trays_center">
+    <origin xyz="${-tray_length+.02} 0 0" rpy="0 0 0" />
+  </xacro:kitting_tray1>
+  <xacro:kitting_tray1 trayname="set_2_tray_1" parent="b_bot_base">
+    <origin xyz=".55 -.1 0.01" rpy="0 0 ${pi/2}" />
+  </xacro:kitting_tray1>
+  <xacro:kitting_tray1 trayname="set_3_tray_1" parent="b_bot_base">
+    <origin xyz=".55 ${tray_length-.1} 0.01" rpy="0 0 ${pi/2}" />
+  </xacro:kitting_tray1>
+  
+</robot>

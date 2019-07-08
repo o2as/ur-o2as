@@ -1,0 +1,31 @@
+controller_list:
+  - name: a_bot_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    joints:
+      - a_bot_shoulder_pan_joint
+      - a_bot_shoulder_lift_joint
+      - a_bot_elbow_joint
+      - a_bot_wrist_1_joint
+      - a_bot_wrist_2_joint
+      - a_bot_wrist_3_joint
+  - name: b_bot_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    joints:
+      - b_bot_shoulder_pan_joint
+      - b_bot_shoulder_lift_joint
+      - b_bot_elbow_joint
+      - b_bot_wrist_1_joint
+      - b_bot_wrist_2_joint
+      - b_bot_wrist_3_joint
+  - name: c_bot_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    joints:
+      - c_bot_shoulder_pan_joint
+      - c_bot_shoulder_lift_joint
+      - c_bot_elbow_joint
+      - c_bot_wrist_1_joint
+      - c_bot_wrist_2_joint
+      - c_bot_wrist_3_joint

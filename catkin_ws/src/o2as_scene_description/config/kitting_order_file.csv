@@ -1,0 +1,31 @@
+﻿Set,No.,ID,Name,Note
+1,1,8,08_SSFHRT10-75-M4-FC55-G20,Drive shaft (Straight) D10h7
+1,2,7,07_SBARB6200ZZ_30,Bearings with Housings (Double Bearings)
+1,3,11,11_MBRAC60-2-10,Pulley for Round Belts Clamping Type P.D. 60mm
+1,4,17,17_SCB4-10,10mm M4 Socket Head Cap Screw  (metric coarse thread)
+1,5,18,18_SCB3-10,10mm M3 Socket Head Cap Screw  (metric coarse thread)
+1,6,16,16_SPWF6,M6 Flat Washer  (Fixing for idler shaft)
+1,7,5,05_MBRFA30-2-P6,Pulley for Round Belt (4mm) - Setscrew P.D. 30mm
+1,8,15,15_SLBNR6,M6 Hex Nut  (Fixing for idler shaft)
+1,9,4,04_37D-GEARMOTOR-50-70,Geared motor (Gear ratio 1:70)
+1,10,10,10_CLBPS10_17_4,Bearing Spacers For Inner Ring (output pulley)
+2,1,11,11_MBRAC60-2-10,Pulley for Round Belts Clamping Type P.D. 60mm
+2,2,7,07_SBARB6200ZZ_30,Bearings with Housings (Double Bearings)
+2,3,15,15_SLBNR6,M6 Hex Nut  (Fixing for idler shaft)
+2,4,16,16_SPWF6,M6 Flat Washer  (Fixing for idler shaft)
+2,5,18,18_SCB3-10,10mm M3 Socket Head Cap Screw  (metric coarse thread)
+2,6,8,08_SSFHRT10-75-M4-FC55-G20,Drive shaft (Straight) D10h7
+2,7,17,17_SCB4-10,10mm M4 Socket Head Cap Screw  (metric coarse thread)
+2,8,4,04_37D-GEARMOTOR-50-70,Geared motor (Gear ratio 1:70)
+2,9,16,16_SPWF6,M6 Flat Washer  (Fixing for idler shaft)
+2,10,10,10_CLBPS10_17_4,Bearing Spacers For Inner Ring (output pulley)
+3,1,5,05_MBRFA30-2-P6,Pulley for Round Belt (4mm) - Setscrew P.D. 30mm
+3,2,7,07_SBARB6200ZZ_30,Bearings with Housings (Double Bearings)
+3,3,16,16_SPWF6,M6 Flat Washer  (Fixing for idler shaft)
+3,4,17,17_SCB4-10,10mm M4 Socket Head Cap Screw  (metric coarse thread)
+3,5,10,10_CLBPS10_17_4,Bearing Spacers For Inner Ring (output pulley)
+3,6,18,18_SCB3-10,10mm M3 Socket Head Cap Screw  (metric coarse thread)
+3,7,18,18_SCB3-10,10mm M3 Socket Head Cap Screw  (metric coarse thread)
+3,8,15,15_SLBNR6,M6 Hex Nut  (Fixing for idler shaft)
+3,9,8,08_SSFHRT10-75-M4-FC55-G20,Drive shaft (Straight) D10h7
+3,10,4,04_37D-GEARMOTOR-50-70,Geared motor (Gear ratio 1:70)

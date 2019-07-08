@@ -1,0 +1,2 @@
+int32 result_num
+omron_cad_matching/DetectedObject[] detected_objects

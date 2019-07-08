@@ -1,0 +1,9 @@
+<launch>
+    <arg name="config_dir"         default="$(find o2as_fastening_tools)/config"/>
+    <arg name="suction_control"      default="suction_control"/>
+    
+    <node name="suction_controller" pkg="o2as_fastening_tools" type="suction_controller.py" output="screen">
+        <param name="config_dir"    type="string" value="$(arg config_dir)"/>
+        <param name="suction_control" type="string" value="$(arg suction_control)"/>
+    </node>
+</launch>

@@ -1,0 +1,47 @@
+<launch>
+
+  <arg name="manager" default="nodelet_manager" />
+  <arg name="num_worker_threads" default="4" />
+
+  <node pkg="nodelet" type="nodelet" name="$(arg manager)" args="manager" output="screen">
+     <param name="num_worker_threads" value="$(arg num_worker_threads)" />
+  </node>
+
+  <arg name="camera_name" default="camera"/>
+  <arg name="serial_number" default="605201001486"/> <!-- specify serial number of your camera -->
+  <arg name="color_width" default="640"/>
+  <arg name="color_height" default="360"/>
+  <arg name="depth_width" default="640"/>
+  <arg name="depth_height" default="480"/>
+  <arg name="camera_frame" default="b_bot_camera"/>
+  <arg name="camera_data_path" default="$(find o2as_realsense_camera)/image"/>
+  <arg name="color_image_filename" default="color.png"/>
+  <arg name="depth_image_filename" default="depth.png"/>
+  <arg name="point_cloud_filename" default="cloud.pcd"/>
+  <arg name="trigger_mode" default="false"/>
+  <arg name="send_color" default="true"/>
+  <arg name="send_depth" default="true"/>
+  <arg name="send_cloud" default="true"/>
+
+  <node pkg="nodelet" type="nodelet" name="$(arg camera_name)" args="load o2as_realsense_camera/RealSenseCameraNodelet $(arg manager)" >
+    <param name="serial_number" type="string" value="$(arg serial_number)"/>
+    <param name="color_width" type="int" value="$(arg color_width)"/>
+    <param name="color_height" type="int" value="$(arg color_height)"/>
+    <param name="depth_width" type="int" value="$(arg depth_width)"/>
+    <param name="depth_height" type="int" value="$(arg depth_height)"/>
+    <param name="camera_frame" type="string" value="$(arg camera_frame)"/>
+    <param name="camera_data_path" type="string" value="$(arg camera_data_path)"/>
+    <param name="color_image_filename" type="string" value="$(arg color_image_filename)"/>
+    <param name="depth_image_filename" type="string" value="$(arg depth_image_filename)"/>
+    <param name="point_cloud_filename" type="string" value="$(arg point_cloud_filename)"/>
+    <param name="trigger_mode" type="bool" value="$(arg trigger_mode)"/>
+    <param name="send_color" type="bool" value="$(arg send_color)"/>
+    <param name="send_depth" type="bool" value="$(arg send_depth)"/>
+    <param name="send_cloud" type="bool" value="$(arg send_cloud)"/>
+  </node>    
+
+  <!-- publish RGB frames with 5Hz on /camera/color/image_raw_throttle -->
+  <node pkg="topic_tools" type="throttle" name="topic_tools_throttle" args="messages /camera/color/image_raw 5.0">
+  </node>
+
+</launch>

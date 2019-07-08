@@ -1,0 +1,24 @@
+<launch>
+    <!-- args -->
+    <arg name="parts_list_filename" default="$(find omron_cad_matching)/data/object_config/parts_list.yaml"/>
+    <arg name="train_setting_filename" default="$(find omron_cad_matching)/data/setting/train_setting.yaml"/>
+    <arg name="camera_setting_filename" default="$(find omron_cad_matching)/data/camera_info/test.yaml"/>
+    <arg name="conf_dir" default="$(find omron_cad_matching)/data/object_config"/>
+    <arg name="cad_dir" default="$(find omron_cad_matching)/data/meshes"/>
+    <arg name="model_dir" default="$(find omron_cad_matching)/data/model"/>
+    <arg name="model_name" default="all_parts"/>
+   
+    <!-- training node -->
+    <group ns="omron_cad_matching">
+        <node name="train_server" pkg="omron_cad_matching" type="train_server" output="screen"/>
+        <node name="train_client" pkg="omron_cad_matching" type="train_multi.py" output="screen">
+            <rosparam command="load" file="$(arg parts_list_filename)"/>
+            <rosparam command="load" file="$(arg train_setting_filename)"/>
+            <param name="camera_setting_filename" type="string" value="$(arg camera_setting_filename)"/>
+            <param name="conf_dir" type="string" value="$(arg conf_dir)"/>
+            <param name="cad_dir" type="string" value="$(arg cad_dir)"/>
+            <param name="model_dir" type="string" value="$(arg model_dir)"/>
+            <param name="model_name" type="string" value="$(arg model_name)"/>
+        </node>
+    </group>
+</launch>

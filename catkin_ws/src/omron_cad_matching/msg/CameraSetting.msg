@@ -1,0 +1,11 @@
+int32 width                 
+int32 height                
+float32 focal_length_x
+float32 focal_length_y
+float32 principal_point_x   
+float32 principal_point_y   
+float32 dist_param_k1
+float32 dist_param_k2
+float32 dist_param_p1
+float32 dist_param_p2
+float32 dist_param_k3

@@ -1,0 +1,16 @@
+<launch>
+    <arg name="parts_list_filename" default="$(find o2as_cad_matching)/data/object_config/assembly_parts_list.yaml"/>
+
+    <arg name="phoxi_serial_number" default="2018_03_027_LC3"/>
+    <include file="$(find o2as_cad_matching)/launch/train_parts_phoxi.launch">
+        <arg name="parts_list_filename" value="$(arg parts_list_filename)"/>
+        <arg name="phoxi_serial_number" value="$(arg phoxi_serial_number)"/>
+    </include>
+
+    <arg name="b_bot_camera_serial_number" default="616205004841"/>
+    <include file="$(find o2as_cad_matching)/launch/train_parts_realsense.launch">
+        <arg name="parts_list_filename" value="$(arg parts_list_filename)"/>
+        <arg name="b_bot_camera_serial_number" value="$(arg b_bot_camera_serial_number)"/>
+    </include>
+
+</launch>

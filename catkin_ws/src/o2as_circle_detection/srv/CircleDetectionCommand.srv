@@ -1,0 +1,8 @@
+# Only one command can be set at a time. Requests are interpreted from the top (the stop command overrides all)
+uint32 camera_id
+string object_name
+---
+# Define the result
+bool circle_detected
+float64 x_distance
+float64 y_distance

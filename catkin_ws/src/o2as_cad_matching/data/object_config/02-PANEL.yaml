@@ -1,0 +1,17 @@
+Object:
+  initial_pose_x        :    0 # [deg]
+  initial_pose_y        :    0 # [deg]
+  initial_pose_z        :    0 # [deg]
+  both_side             :    0 # [0:False/1:True]
+  min_latitude          :  -90 # [deg]
+  max_latitude          :   90 # [deg]
+  min_longitude         :  -90 # [deg]
+  max_longitude         :   90 # [deg]
+  min_camera_roll       : -180 # [deg]
+  max_camera_roll       :  180 # [deg]
+  min_distance          :  100 # [mm]
+  max_distance          :  600 # [mm]
+  rotation_invariance_x :  360 # [deg]
+  rotation_invariance_y :  180 # [deg]
+  rotation_invariance_z :  360 # [deg]
+  object_id             :    2 #

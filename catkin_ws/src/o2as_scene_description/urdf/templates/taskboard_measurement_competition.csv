@@ -1,0 +1,18 @@
+part no.,x[mm],y[mm],z[mm] (DO NOT CHANGE),"Rotation (in degree, positive is counter clockwise. Initially, Z is pointing up normal to the taskboard, y is pointing to a_bot, and x is pointing away from the c_bot)",Notes
+1,340,340,0,0,DO NOT CHANGE z and rotation
+2,50,350,0,0,DO NOT CHANGE z and rotation
+3,80,310,0,0,DO NOT CHANGE z and rotation
+4,150,280,0,0,DO NOT CHANGE z and rotation
+5,70,260,4.5,0,DO NOT CHANGE z and rotation
+15,70,260,51.5,0,5 and 15 shares the same frame (same x y z and rotation)
+6_small_pulley,60,60,8.5,0,
+7_1,360,56,50,0,7_1 is the side from which the robot  inserts the bolt
+8,320,250,12,0,DO NOT CHANGE z and rotation
+9,260,150,9,0,DO NOT CHANGE z and rotation
+10,160,360,51.5,0,DO NOT CHANGE z and rotation
+11,60,180,0,0,DO NOT CHANGE z and rotation
+12,140,140,0,0,DO NOT CHANGE z and rotation
+13,350,120,0,0,DO NOT CHANGE z and rotation
+14,230,230,51.5,0,DO NOT CHANGE z and rotation
+6_large_pulley,0,-128,0,-90,DO NOT CHANGE ANYTHING
+7_2,0,-3,0,-90,DO NOT CHANGE ANYTHING

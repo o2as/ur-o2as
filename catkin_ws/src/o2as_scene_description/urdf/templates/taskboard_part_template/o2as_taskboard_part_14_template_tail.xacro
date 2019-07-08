@@ -1,0 +1,12 @@
+  <link name="${boardname}_part14">  
+    <visual>
+      <origin xyz="0 0 -.025" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length=".05" radius=".003"/> 
+      </geometry>
+      <material name="grey">
+        <color rgba=".3 .3 .3 1"/>
+      </material>
+    </visual>
+  </link>
+

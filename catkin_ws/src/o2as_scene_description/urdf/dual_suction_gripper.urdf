@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<robot name="aaa" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find o2as_scene_description)/urdf/dual_suction_gripper.urdf.xacro" />
+
+  <link name ="base_link"/>
+  
+  <xacro:dual_suction_gripper_o2as prefix="" parent="base_link">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:dual_suction_gripper_o2as>
+</robot>
+

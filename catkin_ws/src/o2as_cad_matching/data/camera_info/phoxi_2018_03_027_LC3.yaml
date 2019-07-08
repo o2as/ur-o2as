@@ -1,0 +1,12 @@
+camera_setting:
+  width             : 2064
+  height            : 1544
+  focal_length_x    : 2226.52477235 #2382.1552440299
+  focal_length_y    : 2226.52477235 # 2486.8153357951
+  principal_point_x : 978.075053258 # 937.3032612767
+  principal_point_y : 775.74852147 # 716.9542830186
+  dist_param_k1     : 0.0
+  dist_param_k2     : 0.0
+  dist_param_p1     : 0.0
+  dist_param_p2     : 0.0
+  dist_param_k3     : 0.0

@@ -1,0 +1,34 @@
+#note 1
+need to give permission
+
+see source:https://github.com/esp8266/source-code-examples/issues/26
+
+/dev/ttyUSB0
+
+
+or from https://www.arduino.cc/en/Guide/Linux
+
+on terminal, input
+
+ls -l /dev/ttyUSB*
+
+
+you will get something like
+
+
+crw-rw---- 1 root dialout 188, 0 5 apr 23.01 ttyUSB0
+
+then input this
+
+sudo usermod -a -G dialout <username>
+
+where <username> is your username
+
+#note 2
+originally, the program is written for pyserial version 2.x (worked on 2.6.x. I got this from "sudo apt-get install python-serial" in ubuntu 14.04)
+
+However, it does not work with the newest pyserial (version 3.4), which can be downloaded using "sudo pip install pyserial"
+
+The reason: .setParity and .setstopbits are deprecated.
+
+Hence, I edited the program to fit 3.4.

@@ -1,0 +1,26 @@
+<launch>
+
+	<!-- camera -->
+	<arg name="object_id" default="7"/>
+	<arg name="camera_name" default="b_bot_camera"/>
+	<arg name="camera_serial_number" default="616205004841"/>
+
+	<!-- camera -->
+	<include file="$(find o2as_realsense_camera)/launch/camera.launch">
+		<arg name="serial_number" value="$(arg camera_serial_number)"/>
+		<arg name="camera_name" default="$(arg camera_name)"/>
+        <arg name="trigger_mode" value="true"/>
+        <arg name="send_color" value="true"/>
+        <arg name="send_depth" value="false"/>
+        <arg name="send_cloud" value="true"/>
+	</include>
+
+	<!-- data_collection -->
+	<include file="$(find o2as_cad_matching)/launch/search_demo_camera.launch">
+		<arg name="object_id" value="$(arg object_id)"/>
+		<arg name="camera_name" value="$(arg camera_name)"/>
+		<arg name="camera_type" value="realsense"/>
+		<arg name="camera_serial_number" value="$(arg camera_serial_number)"/>
+	</include>
+	
+</launch>

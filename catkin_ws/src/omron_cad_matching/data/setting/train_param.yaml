@@ -1,0 +1,5 @@
+train_setting:
+  min_dist: 700 # [mm]
+  max_dist: 950 # [mm]
+  thread_num: 4
+  

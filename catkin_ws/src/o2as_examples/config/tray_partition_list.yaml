@@ -1,0 +1,17 @@
+tray_partition_list:
+  - NONE
+  - NONE
+  - NONE
+  - set3_tray_1_partition_4
+  - set3_tray_2_partition_6
+  - set3_tray_1_partition_3
+  - set3_tray_1_partition_2
+  - set3_tray_2_partition_1
+  - set3_tray_2_partition_4
+  - set3_tray_2_partition_7
+  - set3_tray_1_partition_1
+  - set3_tray_2_partition_3
+  - set3_tray_1_partition_5
+  - set3_tray_2_partition_2
+  - set3_tray_2_partition_5
+  - set3_tray_2_partition_8

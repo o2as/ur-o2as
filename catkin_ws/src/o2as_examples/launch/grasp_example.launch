@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Parameters to pass to the ROS node -->
+  <arg name="move_group" default="a_bot"/>
+  <arg name="ee_link" default="a_bot_robotiq_85_tip_link"/>
+  <arg name="already_published_object" default="false"/>
+      
+  <!-- This calls the ROS node we have written, using the parameters above -->
+  <node name="grasp_example" pkg="o2as_examples" type="grasp_example" respawn="false" output="screen">
+    <param name="move_group" value="$(arg move_group)"/>
+    <param name="ee_link" value="$(arg ee_link)"/>
+    <param name="already_published_object" value="$(arg already_published_object)"/>
+  </node>
+  
+</launch>

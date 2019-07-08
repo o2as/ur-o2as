@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Parameters to pass to the ROS node -->
+  <arg name="serial_port" default="/dev/ttyUSB0"/>
+  
+  <!-- This calls the ROS node we have written, using the parameters above -->
+  <node name="combined_gripper_server" pkg="o2as_combined_gripper" type="combined_gripper_server.py" respawn="false" output="screen">
+    <param name="serial_port" value="$(arg serial_port)"/>
+    <rosparam file="$(find o2as_precision_gripper)/config/combined_gripper_parameters.yaml" command="load" />
+  </node>
+  
+  <node name="gripper_client" pkg="o2as_precision_gripper" type="example_open_close.py" respawn="false" output="screen" />
+  
+</launch>

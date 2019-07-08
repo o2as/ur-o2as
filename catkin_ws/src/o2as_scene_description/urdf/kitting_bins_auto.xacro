@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="kitting_scene">
+  <xacro:include filename="$(find o2as_scene_description)/urdf/kitting_bin_macros.xacro" />
+  <xacro:include filename="$(find o2as_scene_description)/urdf/o2as_box.xacro"/>
+
+  <!-- add rack -->
+  <xacro:o2as_box boxname="rack_bins" box_w="0.42" box_l="0.680" box_h=".015" parent="workspace_center">
+    <origin xyz="0 -.32 0" rpy="0 0 0" />   
+  </xacro:o2as_box>
+ 
+  <link name="rack_bins_center" />
+  <joint name="rack_bins_joint" type="fixed">
+    <parent link="workspace_center" />
+    <child link="rack_bins_center"/>
+    <origin xyz=".21 0 0.015" rpy="0 0 0"/>
+  </joint>
+
+
+
+ <!-- space for bin -->
+
+ <!-- bin1_definition -->
+ <xacro:property name="bin1_width" value="0.125"/>
+ <xacro:property name="bin1_length" value="0.128"/>
+ <xacro:property name="z_origin_offset_1" value="-.008" />
+
+ <!-- bin2_definition -->
+ <xacro:property name="bin2_width" value="0.112"/>
+ <xacro:property name="bin2_length" value="0.201"/>
+ <xacro:property name="z_origin_offset_2" value="-.009" />
+
+ <!-- bin3_definition -->
+ <xacro:property name="bin3_width" value="0.192"/>
+ <xacro:property name="bin3_length" value="0.285"/>
+ <xacro:property name="z_origin_offset_3" value="-.004" />
+
+ <!-- A row of bin1 -->
+ <xacro:property name="set1_x" value=".135"/>
+ <xacro:property name="set1_y" value="0.285"/>
+ <xacro:property name="set1_z" value="0.015"/>
+ <!-- A row of bin2 -->
+ <xacro:property name="set2_x" value=".35"/>
+ <xacro:property name="set2_y" value="0.285"/>
+ <xacro:property name="set2_z" value="0.015"/>
+ <!--set1_bin2_1_-->
+  <xacro:kitting_bin_2 binname="set1_bin2_1" parent="workspace_center" z_origin_offset="-.009">
+      <origin xyz=".135 0.229 0.024" rpy="0 0 0" />
+  </xacro:kitting_bin_2>
+  <!--set1_bin2_2_-->
+  <xacro:kitting_bin_2 binname="set1_bin2_2" parent="workspace_center" z_origin_offset="-.009">
+      <origin xyz=".135 0.117 0.024" rpy="0 0 0" />
+  </xacro:kitting_bin_2>
+  <!--set1_bin2_3_-->
+  <xacro:kitting_bin_2 binname="set1_bin2_3" parent="workspace_center" z_origin_offset="-.009">
+      <origin xyz=".135 0.005 0.024" rpy="0 0 0" />
+  </xacro:kitting_bin_2>
+  <!--set1_bin2_4_-->
+  <xacro:kitting_bin_2 binname="set1_bin2_4" parent="workspace_center" z_origin_offset="-.009">
+      <origin xyz=".135 -0.107 0.024" rpy="0 0 0" />
+  </xacro:kitting_bin_2>
+  <!--set1_bin3_1_-->
+  <xacro:kitting_bin_3 binname="set1_bin3_1" parent="workspace_center" z_origin_offset="-.004">
+      <origin xyz=".135 -0.259 0.019" rpy="0 0 0" />
+  </xacro:kitting_bin_3>
+  <!--set2_bin1_1_-->
+  <xacro:kitting_bin_1 binname="set2_bin1_1" parent="workspace_center" z_origin_offset="-.008">
+      <origin xyz=".35 0.2225 0.023" rpy="0 0 0" />
+  </xacro:kitting_bin_1>
+  <!--set2_bin1_2_-->
+  <xacro:kitting_bin_1 binname="set2_bin1_2" parent="workspace_center" z_origin_offset="-.008">
+      <origin xyz=".35 0.0975 0.023" rpy="0 0 0" />
+  </xacro:kitting_bin_1>
+  <!--set2_bin1_3_-->
+  <xacro:kitting_bin_1 binname="set2_bin1_3" parent="workspace_center" z_origin_offset="-.008">
+      <origin xyz=".35 -0.0275 0.023" rpy="0 0 0" />
+  </xacro:kitting_bin_1>
+  <!--set2_bin1_4_-->
+  <xacro:kitting_bin_1 binname="set2_bin1_4" parent="workspace_center" z_origin_offset="-.008">
+      <origin xyz=".35 -0.1525 0.023" rpy="0 0 0" />
+  </xacro:kitting_bin_1>
+  <!--set2_bin1_5_-->
+  <xacro:kitting_bin_1 binname="set2_bin1_5" parent="workspace_center" z_origin_offset="-.008">
+      <origin xyz=".35 -0.2775 0.023" rpy="0 0 0" />
+  </xacro:kitting_bin_1>
+ 
+
+  
+</robot>

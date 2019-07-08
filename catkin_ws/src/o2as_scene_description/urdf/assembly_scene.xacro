@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="assembly_scene">
+  <xacro:include filename="$(find o2as_scene_description)/urdf/kitting_tray_with_partitions.xacro" />
+
+  <!-- Trays -->
+  <xacro:kitting_tray1 trayname="tray_1" parent="workspace_center">
+    <origin xyz="0.05 -.03 0" rpy="0 0 ${-pi/2}" />
+  </xacro:kitting_tray1>
+  <xacro:kitting_tray2 trayname="tray_2" parent="workspace_center">
+    <origin xyz="0.35 0 0" rpy="0 0 ${pi/2}" />
+  </xacro:kitting_tray2>
+
+  <!-- Retainer pin jig (used to hold the retainer pin for resetting during the task) -->
+  <joint name="retainer_pin_holder_joint" type="fixed">
+    <parent link="workspace_center"/>
+    <child link="retainer_pin_holder_link"/>
+    <origin rpy="0.0 0.0 ${pi/2}" xyz="0.1 -0.3 0.032"/>
+  </joint>
+  <link name="retainer_pin_holder_link">
+    <visual>
+      <origin xyz="0 0 ${-.032+.025/2}" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length=".025" radius="0.01"/>
+      </geometry>
+      <material name="Brown">
+        <color rgba="0.7 0.4 0.2 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <xacro:include filename="$(find o2as_parts_description)/urdf/assembly_parts_macros.urdf.xacro"/>
+  <!-- <xacro:include filename="$(find o2as_parts_description)/urdf/display_all_parts.urdf.xacro"/> -->
+
+
+  <xacro:property name="assy_dx" value="-.008" />
+
+  <!-- <xacro:include filename="$(find o2as_parts_description)/urdf/generated/full_assembly.urdf.xacro"/>
+  <xacro:full_assembly prefix="assembled_" parent="workspace_center">
+    <origin xyz="${assy_dx} 0.1 .08" rpy="0 0 ${-pi/2}" />
+  </xacro:full_assembly> -->
+
+  <xacro:include filename="$(find o2as_parts_description)/urdf/generated/full_assembly_frames_only.urdf.xacro"/>
+  <xacro:full_assembly_frames_only prefix="assembled_" parent="workspace_center">
+    <origin xyz="${assy_dx} 0.1 .08" rpy="0 0 ${-pi/2}" />   
+  </xacro:full_assembly_frames_only>
+
+  <!-- The base plate -->
+  <xacro:assy_part_01 prefix="dummy" parent="assembled_assy_part_01" spawn_attached="true">
+    <origin xyz="0 0 0" rpy="0 0 0" />   
+  </xacro:assy_part_01>
+
+  <xacro:assy_part_frames_only_02 prefix="initial_" parent="workspace_center" spawn_attached="true">
+    <origin xyz="-.18 -0.05 0" rpy="0 0 ${pi}" />   
+  </xacro:assy_part_frames_only_02>
+
+  <xacro:assy_part_frames_only_03 prefix="initial_" parent="workspace_center" spawn_attached="true">
+    <origin xyz="-.18 0.045 0" rpy="0 0 ${pi}" />   
+  </xacro:assy_part_frames_only_03>
+
+  <xacro:assy_part_frames_only_14 prefix="intermediate_" parent="workspace_center" spawn_attached="true">
+    <origin xyz=".25 -0.15 .50" rpy="${pi/2} ${-pi/2} 0" />   
+  </xacro:assy_part_frames_only_14>
+</robot>

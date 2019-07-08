@@ -1,0 +1,16 @@
+# Only one command can be set at a time. Requests are interpreted from the top (the stop command overrides all)
+bool stop
+
+bool open_outer_gripper_fully
+bool close_outer_gripper_fully
+bool open_inner_gripper_fully
+bool close_inner_gripper_fully
+
+bool this_action_grasps_an_object
+
+float64 linear_motor_position           # 0 when at the bottom position. in m
+float64 outer_gripper_opening_width     # in m
+float64 inner_gripper_opening_width     # in m
+---
+# Define the result
+bool success

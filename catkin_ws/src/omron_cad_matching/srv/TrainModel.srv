@@ -1,0 +1,6 @@
+string cad_filename
+omron_cad_matching/CameraSetting camera_setting
+omron_cad_matching/TrainSetting train_setting
+---
+int32 model_id 
+bool success

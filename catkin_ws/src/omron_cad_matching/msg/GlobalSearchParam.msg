@@ -1,0 +1,13 @@
+int32 width
+int32 height
+int32 search_color_num
+int32 icp_color_num
+float32 thresh_depth
+int32 thresh_grad
+int32 thresh_inlier_pc
+int32 search_area_left
+int32 search_area_top
+int32 search_area_right
+int32 search_area_bottom
+int32 max_result_num_all
+int32 thread_num

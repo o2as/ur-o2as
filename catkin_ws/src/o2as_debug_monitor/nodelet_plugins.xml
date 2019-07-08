@@ -1,0 +1,9 @@
+<library path="lib/libo2as_debug_monitor">
+  <class name="o2as_debug_monitor/O2asDebugMonitor"
+         type="o2as_debug_monitor::O2asDebugMonitor"
+         base_class_type="nodelet::Nodelet">
+  <description>
+    This is a debug monitor of O2AS robot system for WRC2018.
+  </description>
+  </class>
+</library>

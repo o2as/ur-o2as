@@ -1,0 +1,79 @@
+stages:
+  - setup-local-machine
+  - build-docker-image
+  - build-catkin-workspace
+  - deploy-docker-image
+
+setup-local-machine:
+  image: ubuntu:xenial
+  stage: setup-local-machine
+  before_script:
+    # Install tools missing in ubuntu:xenial.
+    - apt-get update
+    - apt-get install -y sudo
+    - apt-get install -y openssh-client
+  script:
+    - sh ./SETUP-MACHINE.sh
+
+build-docker-image:
+  image: docker:latest
+  services:
+    # Use Docker-in-Docker (begin).
+    # https://gitlab.com/help/ci/docker/using_docker_build.md#use-docker-in-docker-executor
+    - docker:dind
+  stage: build-docker-image
+  before_script:
+    # Upgrade packages.
+    - apk update
+    - apk upgrade
+    # Install Docker Compose.
+    - apk add py-pip
+    - pip install docker-compose
+    # Login to GitLab Container Registry.
+    # https://gitlab.com/help/ci/docker/using_docker_build.md#using-the-gitlab-container-registry
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  script:
+    - sh ./BUILD-IMAGE.sh
+  after_script:
+    # Push image to GitLab Container Registry.
+    # https://gitlab.com/help/ci/docker/using_docker_build.md#using-the-gitlab-container-registry
+    - docker tag docker_ur:latest $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+
+build-catkin-workspace:
+  image: docker:latest
+  services:
+    # Use Docker-in-Docker (begin).
+    # https://gitlab.com/help/ci/docker/using_docker_build.md#use-docker-in-docker-executor
+    - docker:dind
+  stage: build-catkin-workspace
+  before_script:
+    # Login to GitLab Container Registry.
+    # https://gitlab.com/help/ci/docker/using_docker_build.md#using-the-gitlab-container-registry
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  script:
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+    - docker run
+      -e CI_REPOSITORY_URL=$CI_REPOSITORY_URL
+      -e CI_PROJECT_NAME=$CI_PROJECT_NAME
+      -e CI_COMMIT_SHA=$CI_COMMIT_SHA
+      $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME /root/scripts/gitlab-ci/build-catkin-workspace.sh
+
+deploy-docker-image:
+  only:
+    - master
+    - devel
+  image: docker:latest
+  services:
+    # Use Docker-in-Docker (begin).
+    # https://gitlab.com/help/ci/docker/using_docker_build.md#use-docker-in-docker-executor
+    - docker:dind
+  stage: deploy-docker-image
+  before_script:
+    # Login to GitLab Container Registry.
+    # https://gitlab.com/help/ci/docker/using_docker_build.md#using-the-gitlab-container-registry
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  script:
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME $CI_REGISTRY_IMAGE:latest
+    - docker push $CI_REGISTRY_IMAGE:latest

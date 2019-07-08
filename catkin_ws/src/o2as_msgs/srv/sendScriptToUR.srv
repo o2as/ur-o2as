@@ -1,0 +1,35 @@
+# This is just a wrapper around the move_group functionality
+
+# Request
+string robot_name       # "a_bot", "b_bot", "c_bot"
+string program_id       # "insertion", "lin_move", "lin_move_rel", "spiral_motion", "move_j", "linear_push"
+
+# Parameters for each of the programs
+float64 max_force               # The force that spiral_search applies, in N
+string force_direction          # The direction vector of the force (usually X+ or Z-)
+float64 max_radius              # In m. Default: .0065
+float64 radius_increment        # How fast the spiral increases in size per rotation. In m. Default: .002
+float64 theta_increment         # The angle increment (in degrees!) each rotation is sliced into.
+geometry_msgs/Vector3 stiffness # For insertion and spiral_search. In N/m. The coordinate system is the ee link.
+float64 forward_speed           # The speed at which "insertion" moves forward. Slower probably improves precision.
+float64 max_approach_distance   # For the linear search approach
+bool peck_mode                  # 
+
+string spiral_axis              # "X", "Y", "Z". For the "spiral_motion" program.
+
+float64 max_insertion_distance
+float64 impedance_mass          # Mass used for impedance control (default: 10 kg)
+
+# lin_move
+geometry_msgs/PoseStamped target_pose   # for lin_move
+float64 acceleration            # move_l param (default: .5)
+float64 velocity                # move_l param (default: .05)
+
+# lin_move_rel
+geometry_msgs/Point relative_translation  # for lin_translation. In EE coordinates (Z+ is forward)
+
+# Joint pose
+float64[] joint_positions
+---
+# Response
+bool success

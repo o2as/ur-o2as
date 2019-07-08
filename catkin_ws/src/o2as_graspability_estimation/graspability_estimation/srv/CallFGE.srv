@@ -1,0 +1,12 @@
+# Request
+int8 parts_id
+int8 bin_id
+string filename
+string gripper_type # 'suction' or 'two_finger' or 'inner'
+---
+# Response
+bool success
+int32 result_num
+geometry_msgs/Point[] pos3D
+geometry_msgs/Point[] rot3D # surface normal
+float32[] rotipz # gripper rotation

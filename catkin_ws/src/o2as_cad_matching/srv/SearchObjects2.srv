@@ -1,0 +1,6 @@
+sensor_msgs/PointCloud2 pcloud
+sensor_msgs/Image image
+sensor_msgs/Image mask
+---
+o2as_cad_matching/DetectedObject[] objects
+bool success

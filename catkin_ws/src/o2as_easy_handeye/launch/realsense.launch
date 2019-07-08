@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<launch>
+  <!-- Start realsense -->
+  <arg name="camera_name"	default="a_bot_camera"/>
+  <include file="$(find o2as_realsense_camera)/launch/camera.launch">
+      <arg name="camera_name" value="$(arg camera_name)"/>
+      <arg name="serial_number" value="627201001218"/>
+      <arg name="trigger_mode" value="false"/>
+      <arg name="send_color" value="true"/>
+      <arg name="send_depth" value="true"/>
+      <arg name="send_cloud" value="true"/>
+  </include>
+</launch>
+
+<!-- Start ArUco -->
+<node name="aruco_tracker" pkg="aruco_ros" type="single" output="screen">
+<!-- <node name="aruco_tracker" pkg="o2as_aruco_ros" type="o2as_single" output="screen"> -->
+  <remap from="/camera_info"	to="/$(arg camera_name)/color/camera_info"/>
+  <remap from="/image"	to="/$(arg camera_name)/color/image_raw"/>
+  <!-- <remap from="/pointcloud"	to="/$(arg camera_name)/cloud"/> -->
+  <!-- Other parameters -->
+  <param name="image_is_rectified" value="false"/>
+  <param name="marker_size"        value="$(arg marker_size)"/>
+  <param name="marker_id"          value="$(arg marker_id)"/>
+  <param name="reference_frame"    value=""/>
+  <param name="camera_frame"       value="camera_link"/>
+  <param name="marker_frame"       value="camera_marker"/>
+</node>

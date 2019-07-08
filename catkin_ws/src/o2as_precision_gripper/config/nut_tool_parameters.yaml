@@ -1,0 +1,9 @@
+publish_rate: 100
+close_torque: 30
+peg_motor_id: 1
+m10_nut_motor_id: 1
+m6_nut_motor_id: 1
+
+
+close_torque_set_screw: 20
+setScrew_motor_id: 75

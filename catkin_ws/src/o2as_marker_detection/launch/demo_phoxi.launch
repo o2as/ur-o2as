@@ -1,0 +1,19 @@
+<launch>
+
+    <!-- phoxi -->
+	<!-- <arg name="camera_serial_number" default="InstalledExamples-PhoXi-example(File3DCamera)"/> -->
+	<arg name="camera_name" default="phoxi"/>
+	<arg name="camera_type" default="phoxi"/>
+	<arg name="camera_serial_number" default="2018-03-027-LC3"/>
+    <node name="phoxi" pkg="o2as_phoxi_camera" type="o2as_phoxi_camera" output="screen">
+        <param name="id" value="$(arg camera_serial_number)"/>
+        <param name="trigger_mode" value="1"/>
+    </node>
+
+	<!-- marker pose estimation -->
+	<include file="$(find o2as_marker_detection)/launch/marker_detection.launch">
+        <arg name="camera_name" value="$(arg camera_name)"/>
+        <arg name="camera_type" value="$(arg camera_type)"/>
+    </include>
+
+</launch>

@@ -1,0 +1,21 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="assy_parts">
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/01-BASE_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/02-PANEL_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/03-PANEL2_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/04_37D-GEARMOTOR-50-70_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/05_PTPA30P2M060-A-P6_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/06_PTBN340P2M-060_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/07_SBARB6200ZZ_30_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/08_SSFHRT10-75-M4-FC40-G35_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/09_EDCS10_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/10_CLBPS10-17-3_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/11_PTPA42P2M060-B-P10_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/12_CLBUS6-9-9.5_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/13_APTF40P2M060_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/14_BGPSL6-9-L30-F8_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/15_SLBNR6_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/16_SPWF6_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/17_SCB4-10_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/18_SCB3-10_frames_only_macro.urdf.xacro"/>
+  <xacro:include filename="$(find o2as_new_parts_description)/urdf/generated/21_SCB4-6_frames_only_macro.urdf.xacro"/>
+</robot>

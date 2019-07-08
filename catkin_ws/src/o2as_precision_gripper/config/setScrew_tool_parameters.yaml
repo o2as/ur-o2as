@@ -1,0 +1,3 @@
+publish_rate: 100
+close_torque: 20
+setScrew_motor_id: 75

@@ -1,0 +1,21 @@
+<launch>
+
+	<!-- camera -->
+	<arg name="camera_name" default="phoxi"/>
+	<arg name="camera_type" default="phoxi"/>
+	<arg name="camera_serial_number" default="2018-03-027-LC3"/>
+  	<node name="$(arg camera_name)" pkg="o2as_phoxi_camera" type="o2as_phoxi_camera" output="screen">
+   	 	<param name="id" value="$(arg camera_serial_number)"/>
+    	<param name="trigger_mode" value="1"/>
+  	</node>
+
+	<!-- data_collection -->
+	<arg name="image_dir" default="$(find o2as_cad_matching)/data/image"/>
+	<include file="$(find o2as_cad_matching)/launch/data_collection.launch">
+		<arg name="image_dir" value="$(arg image_dir)"/>
+		<arg name="camera_name" value="$(arg camera_name)"/>
+		<arg name="camera_type" value="$(arg camera_type)"/>
+		<arg name="camera_serial_number" value="$(arg camera_serial_number)"/>
+	</include>
+
+</launch>

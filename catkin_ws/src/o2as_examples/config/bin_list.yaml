@@ -1,0 +1,23 @@
+bin_list:
+  - id: 1,
+    bin_name: set1_bin3_1
+  - id: 2,
+    bin_name: set1_bin2_4
+  - id: 3,
+    bin_name: set1_bin2_3
+  - id: 4,
+    bin_name: set1_bin2_2
+  - id: 5,
+    bin_name: set1_bin2_1
+  - id: 6,
+    bin_name: set2_bin1_5
+  - id: 7,
+    bin_name: set2_bin1_4
+  - id: 8,
+    bin_name: set2_bin1_3
+  - id: 9,
+    bin_name: set2_bin1_2
+  - id: 10,
+    bin_name: set2_bin1_1
+
+

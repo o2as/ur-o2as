@@ -1,0 +1,19 @@
+<launch>
+
+	<!-- marker pose estimation -->
+	<arg name="camera_name" default=""/>
+	<arg name="camera_type" default=""/>
+	<arg name="camera_serial_number" default=""/>
+    <arg name="dummy_param" default="0"/>
+    
+    <node name="marker_detection" pkg="o2as_marker_detection" type="marker_detection_node.py" output="screen">
+        <param name="image_dir" type="string" value="$(find o2as_marker_detection)/data/image"/>
+        <param name="camera_name" type="string" value="$(arg camera_name)"/>
+        <param name="camera_type" type="string" value="$(arg camera_type)"/>
+        <param name="dummy_param" type="double" value="$(arg dummy_param)"/>
+    </node>
+
+	<!-- reconfigure -->
+    <node name="reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure"/>
+
+</launch>

@@ -1,0 +1,4 @@
+string data_filename
+string text_filename
+---
+bool success

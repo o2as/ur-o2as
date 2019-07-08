@@ -1,0 +1,16 @@
+<launch>
+    <!-- parts info -->
+	<arg name="parts_list_filename" default="$(find o2as_parts_description)/config/assembly_parts_list.yaml"/>
+	<include file="$(find o2as_parts_description)/launch/load_file_params.launch">
+        <arg name="parts_list_filename" value="$(arg parts_list_filename)"/>
+    </include>
+
+    <!-- cad_matching -->
+    <include file="$(find o2as_cad_matching)/launch/search_server.launch"/>
+
+    <!-- o2as_vision -->
+    <node name="o2as_vision_server" pkg="o2as_vision" type="o2as_vision_server.py" output="screen">
+        <param name="image_dir" type="string" value="$(find o2as_vision)/image"/>
+    </node>
+
+</launch>

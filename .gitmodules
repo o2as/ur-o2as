@@ -1,0 +1,36 @@
+[submodule "wiki"]
+	path = wiki
+	url = git@gitlab.com:o2as/ur-o2as.wiki.git
+[submodule "catkin_ws/src/ur_modern_driver"]
+	path = catkin_ws/src/ur_modern_driver
+	url = https://github.com/felixvd/ur_modern_driver.git
+[submodule "catkin_ws/src/industrial_core"]
+	path = catkin_ws/src/industrial_core
+	url = https://github.com/ros-industrial/industrial_core.git
+[submodule "catkin_ws/src/robotiq-UTNR"]
+	path = catkin_ws/src/robotiq-UTNR
+	url = https://github.com/UTNuclearRoboticsPublic/robotiq.git
+[submodule "catkin_ws/src/soem-UTNR"]
+	path = catkin_ws/src/soem-UTNR
+	url = https://github.com/UTNuclearRoboticsPublic/soem.git
+[submodule "catkin_ws/src/robotiq-cri"]
+	path = catkin_ws/src/robotiq-cri
+	url = https://gitlab.com/o2as/robotiq-cri.git
+[submodule "catkin_ws/src/phoxi_camera"]
+	path = catkin_ws/src/phoxi_camera
+	url = https://github.com/photoneo/phoxi_camera
+[submodule "catkin_ws/src/moveit"]
+	path = catkin_ws/src/moveit
+	url = https://gitlab.com/o2as/moveit
+[submodule "catkin_ws/src/moveit_msgs"]
+	path = catkin_ws/src/moveit_msgs
+	url = https://github.com/felixvd/moveit_msgs
+[submodule "catkin_ws/src/aruco_ros"]
+	path = catkin_ws/src/aruco_ros
+	url = https://github.com/pal-robotics/aruco_ros.git
+[submodule "catkin_ws/src/easy_handeye"]
+	path = catkin_ws/src/easy_handeye
+	url = https://github.com/IFL-CAMP/easy_handeye.git
+[submodule "catkin_ws/src/universal_robot"]
+	path = catkin_ws/src/universal_robot
+	url = https://github.com/ros-industrial/universal_robot

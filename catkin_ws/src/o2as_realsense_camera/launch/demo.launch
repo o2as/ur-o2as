@@ -1,0 +1,29 @@
+<launch>
+    <!-- cameras
+    616205004841 : osx
+    612201001671 : osx/b_bot_camera
+	605201001486 : osx
+	627201001218 : osx
+    -->
+    <arg name="camera_name" default="realsense"/>
+    <arg name="serial_number" default="627201001218"/> <!-- specify serial number of your camera -->
+
+    <include file="$(find o2as_realsense_camera)/launch/camera.launch">
+        <arg name="camera_name" value="$(arg camera_name)"/>
+        <arg name="serial_number" value="$(arg serial_number)"/>
+        <arg name="trigger_mode" value="true"/>
+        <arg name="send_color" value="true"/>
+        <arg name="send_depth" value="true"/>
+        <arg name="send_cloud" value="true"/>
+    </include>
+
+    <arg name="image_dir" value="$(find o2as_realsense_camera)/image"/>
+    <node name="demo" pkg="o2as_realsense_camera" type="demo.py" output="screen">
+        <param name="camera_name" type="string" value="$(arg camera_name)"/>
+        <param name="image_filename" type="string" value="$(arg image_dir)/$(arg camera_name)_$(arg serial_number)_texture.png"/>
+        <param name="cloud_filename" type="string" value="$(arg image_dir)/$(arg camera_name)_$(arg serial_number)_cloud.dat"/>
+    </node>
+
+    <node name="reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure"/>
+
+</launch>

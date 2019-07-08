@@ -1,0 +1,31 @@
+﻿Set,No.,ID,Name,Note
+1,1,17,17_SCB4-10,10mm M4 Hexagon socket head bolt  (metric coarse thread)
+1,2,17,17_SCB4-10,10mm M4 Hexagon socket head bolt  (metric coarse thread)
+1,3,18,18_SCB3-10,10mm M3 Hexagon socket head bolt  (metric coarse thread)
+1,4,4,04_37D-GEARMOTOR-50-70,Geared motor (Gear ratio 1:70)
+1,5,9,09_EDCS10,End cap
+1,6,11,11_MBRAC60-2-10,Pulley for Round Belts Clamping Type P.D. 60mm
+1,7,16,16_SPWF6,M6 Washer  (Fixing for idler shaft)
+1,8,8,08_KZAF1075NA4WA55GA20AA0,Drive shaft (Straight) φ10h6
+1,9,13,13_MBGA30-2,4mm round belt idler pulley
+1,10,6,06_MBT4-400,Polyurethane round belt （welded joint product）φ4mm L=400mm
+2,1,18,18_SCB3-10,10mm M3 Hexagon socket head bolt  (metric coarse thread)
+2,2,12,12_CLBUS6-9-9.5,Bearing Spacers For Inner Ring (tension pulley)
+2,3,4,04_37D-GEARMOTOR-50-70,Geared motor (Gear ratio 1:70)
+2,4,16,16_SPWF6,M6 Washer  (Fixing for idler shaft)
+2,5,16,16_SPWF6,M6 Washer  (Fixing for idler shaft)
+2,6,6,06_MBT4-400,Polyurethane round belt （welded joint product）φ4mm L=400mm
+2,7,8,08_KZAF1075NA4WA55GA20AA0,Drive shaft (Straight) φ10h6
+2,8,11,11_MBRAC60-2-10,Pulley for Round Belts Clamping Type P.D. 60mm
+2,9,17,17_SCB4-10,10mm M4 Hexagon socket head bolt  (metric coarse thread)
+2,10,13,13_MBGA30-2,4mm round belt idler pulley
+3,1,16,16_SPWF6,M6 Washer  (Fixing for idler shaft)
+3,2,13,13_MBGA30-2,4mm round belt idler pulley
+3,3,6,06_MBT4-400,Polyurethane round belt （welded joint product）φ4mm L=400mm
+3,4,11,11_MBRAC60-2-10,Pulley for Round Belts Clamping Type P.D. 60mm
+3,5,18,18_SCB3-10,10mm M3 Hexagon socket head bolt  (metric coarse thread)
+3,6,8,08_KZAF1075NA4WA55GA20AA0,Drive shaft (Straight) φ10h6
+3,7,18,18_SCB3-10,10mm M3 Hexagon socket head bolt  (metric coarse thread)
+3,8,9,09_EDCS10,End cap
+3,9,17,17_SCB4-10,10mm M4 Hexagon socket head bolt  (metric coarse thread)
+3,10,4,04_37D-GEARMOTOR-50-70,Geared motor (Gear ratio 1:70)

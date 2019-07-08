@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <!-- "sim", "real", "osaka", or "aist" -->
+  <arg name="config" default="real"/> 
+
+  <!-- Start robot controller -->
+  <include file="$(find o2as_examples)/launch/connect_real_robots.launch" if="$(eval arg('config') == 'real')">
+    <arg name="trigger_mode" value="true" />
+    <arg name="send_depth" value="false" />
+  </include>
+  <include file="$(find o2as_examples)/launch/connect_aist_robots.launch" if="$(eval arg('config') == 'aist')"/>
+  <include file="$(find o2as_examples)/launch/connect_osaka_robots.launch" if="$(eval arg('config') == 'osaka')"/>
+
+	<!-- Start skill server -->
+  <include file="$(find o2as_moveit_config)/launch/o2as_moveit_planning_execution.launch">
+    <arg name="sim" value="true"  if    ="$(eval arg('config') == 'sim')"/>
+    <arg name="sim" value="false" unless="$(eval arg('config') == 'sim')"/>
+  </include>
+  <include file="$(find o2as_skills)/launch/o2as_skill_server.launch"/>
+
+</launch>

@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="o2as_mat">
+  
+  <xacro:macro name="o2as_mat" params="matname mat_w mat_l mat_h parent *origin">
+    <!-- This creates a box with the origin in the bottom corner, fixed to the world link. -->
+    
+    <link name="${matname}">
+      <!-- w is in x, l is in y, h is in z -->
+      <visual>
+        <origin xyz="${mat_w/2} ${mat_l/2} ${mat_h/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${mat_w} ${mat_l} ${mat_h}"/> 
+        </geometry>
+        <material name="white">
+          <color rgba="1 1 1 1"/>
+        </material>
+      </visual>
+      <visual>
+        <origin xyz="${mat_w-.01} ${mat_l/2} ${mat_h}" rpy="0 0 ${pi/2}"/>
+        <geometry>
+          <box size=".38 .002 ${mat_h}"/> 
+        </geometry>
+        <material name="black">
+          <color rgba=".1 .1 .1 1"/>
+        </material>
+      </visual>
+      <visual>
+        <origin xyz=".01 ${mat_l/2} ${mat_h}" rpy="0 0 ${pi/2}"/>
+        <geometry>
+          <box size=".38 .002 ${mat_h}"/> 
+        </geometry>
+        <material name="black">
+          <color rgba=".1 .1 .1 1"/>
+        </material>
+      </visual>
+
+      <visual>
+        <origin xyz="${mat_w/2} ${mat_l-.01} ${mat_h}" rpy="0 0 0"/>
+        <geometry>
+          <box size=".38 .002 ${mat_h}"/> 
+        </geometry>
+        <material name="black">
+          <color rgba=".1 .1 .1 1"/>
+        </material>
+      </visual>
+      <visual>
+        <origin xyz="${mat_w/2} .01 ${mat_h}" rpy="0 0 0"/>
+        <geometry>
+          <box size=".38 .002 ${mat_h}"/> 
+        </geometry>
+        <material name="black">
+          <color rgba=".1 .1 .1 1"/>
+        </material>
+      </visual>
+      <!-- Done with boundary drawing -->
+      <collision>
+        <geometry>
+          <box size="${mat_w} ${mat_l} ${mat_h}"/> 
+        </geometry>
+      </collision>
+
+      <!-- This is required for Gazebo. -->
+      <inertial>
+        <mass value="1.0" />
+        <!-- <origin xyz="${box_w/2} ${box_l} ${box_h/2}" rpy="0 0 0"/> -->
+        <inertia ixx="0.0" ixy="0.0" ixz="0.0"
+          iyy="0.0" iyz="0.0"
+          izz="0.0" />
+      </inertial>
+    </link>
+    <gazebo reference="${matname}">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <joint name="${matname}" type="fixed">
+      <parent link="${parent}" />
+      <child link = "${matname}" />
+      <xacro:insert_block name="origin"/>
+    </joint>
+    

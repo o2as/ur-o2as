@@ -1,0 +1,6 @@
+# Request
+string item_id      # name/ID of an item in the planning scene
+---
+# Response
+moveit_msgs/Grasp grasp_output
+bool success

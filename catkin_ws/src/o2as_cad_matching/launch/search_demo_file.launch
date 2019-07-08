@@ -1,0 +1,24 @@
+<launch>
+
+	<!-- server -->
+	<include file="$(find o2as_cad_matching)/launch/search_server.launch"/>
+
+	<!-- demo -->
+	<arg name="object_id" default="11"/>
+	<arg name="camera_name" default="phoxi"/>
+	<arg name="image_dir" default="$(find o2as_cad_matching)/data/image"/>
+	<arg name="image_name" default="phoxi_2018-03-027-LC3_0"/>
+	<arg name="cloud_filename" default="$(arg image_dir)/$(arg image_name).dat"/>
+	<arg name="image_filename" default="$(arg image_dir)/$(arg image_name).png"/>
+
+	<node name="search_demo" pkg="o2as_cad_matching" type="search_demo_file.py">
+		<param name="object_id" type="string" value="$(arg object_id)"/>
+		<param name="camera_name" type="string" value="$(arg camera_name)"/>
+		<param name="cloud_filename" type="string" value="$(arg cloud_filename)"/>
+		<param name="image_filename" type="string" value="$(arg image_filename)"/>
+	</node>
+
+	<!-- reconfigure -->
+	<node name="reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure"/>
+	
+</launch>

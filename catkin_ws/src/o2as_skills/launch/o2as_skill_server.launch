@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- <include file="$(find o2as_fastening_tools)/launch/fastening_tools.launch">
+    <arg name="num_controllers"    default="1"/>
+    <arg name="serial_port_1" default="/dev/for_docker/screw"/>
+  </include> -->
+
+  <!-- FOR KITTING -->
+  <include file="$(find o2as_blob_detection)/launch/kitting_w_blob.launch" />
+  <include file="$(find o2as_bg_ratio)/launch/o2as_bg_ratio.launch" />
+  <rosparam command="delete" param="fge_bin_id" />
+  <rosparam command="delete" param="part_bin_list" />
+  <rosparam command="load" file="$(find graspability_estimation)/config/fge_bin_id.yaml" />
+  <rosparam command="load" file="$(find o2as_routines)/config/kitting_parts_bin_list.yaml" />
+  <include file="$(find graspability_estimation)/launch/o2as_graspability_estimation.launch" />
+    
+  <!-- <include file="$(find o2as_debug_monitor)/launch/test.launch" /> -->
+  <!-- <include file="$(find o2as_debug_monitor)/launch/kitting.launch" /> -->
+  <include file="$(find o2as_debug_monitor)/launch/assembly.launch" />
+  <!-- <include file="$(find o2as_debug_monitor)/launch/taskboard.launch" /> -->
+
+  <!-- <group ns="o2as_skill_server"> -->
+  <node name="ur_program_relay" pkg="o2as_skills" type="ur_program_relay.py" respawn="false" output="screen"/>
+  <node name="o2as_skill_server" pkg="o2as_skills" type="o2as_skill_server" respawn="false" output="screen"/>
+  
+  <!-- </group> -->
+</launch>

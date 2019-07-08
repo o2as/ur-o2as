@@ -1,0 +1,14 @@
+<launch>
+	<arg name="image_dir" default="$(find o2as_cad_matching)/data/image"/>
+	<arg name="camera_name" default=""/>
+	<arg name="camera_type" default=""/>
+	<arg name="camera_serial_number" default=""/>
+
+	<node name="data_collection_server" pkg="omron_cad_matching" type="data_collection_server" output="screen"/>
+	<node name="data_collection_client" pkg="o2as_cad_matching" type="data_collection.py" output="screen">
+		<param name="image_dir" type="string" value="$(arg image_dir)"/>
+		<param name="camera_name" type="string" value="$(arg camera_name)"/>
+		<param name="camera_type" type="string" value="$(arg camera_type)"/>
+		<param name="camera_serial_number" type="string" value="$(arg camera_serial_number)"/>
+	</node>
+</launch>

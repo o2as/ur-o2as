@@ -1,0 +1,25 @@
+<launch>
+
+	<!-- servers -->
+	<include file="$(find o2as_cad_matching)/launch/search_server.launch"/>
+	<node name="data_collection_server" pkg="omron_cad_matching" type="data_collection_server" output="screen"/>
+
+	<!-- search demo -->
+	<arg name="object_id" default="7"/>
+	<arg name="camera_name" default="b_bot_camera"/>
+	<arg name="camera_type" default="realsense"/>
+	<arg name="camera_serial_number" default="616205004841"/>
+	<arg name="image_dir" default="$(find o2as_cad_matching)/data/image"/>
+	
+	<node name="search_demo" pkg="o2as_cad_matching" type="search_demo_camera.py">
+		<param name="object_id" type="string" value="$(arg object_id)"/>
+		<param name="camera_name" type="string" value="$(arg camera_name)"/>
+		<param name="camera_type" type="string" value="$(arg camera_type)"/>
+		<param name="camera_serial_number" type="string" value="$(arg camera_serial_number)"/>
+		<param name="image_dir" type="string" value="$(arg image_dir)"/>
+	</node>
+
+	<!-- reconfigure -->
+	<node name="reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure"/>
+	
+</launch>

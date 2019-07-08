@@ -1,0 +1,13 @@
+publish_rate: 100
+outer_force: 10
+inner_force: 13
+# 1123
+outer_open_position:  -21000
+outer_close_position: 36000
+speed_limit: 3
+grasping_inner_force : 10
+inner_open_motor_position: 2050
+inner_close_motor_position: 2300
+inner_opensilghtly_motor_position: 2200
+
+inner_slight_open: 45

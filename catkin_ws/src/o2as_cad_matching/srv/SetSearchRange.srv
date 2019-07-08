@@ -1,0 +1,4 @@
+uint32 min_dist
+uint32 max_dist
+---
+bool success

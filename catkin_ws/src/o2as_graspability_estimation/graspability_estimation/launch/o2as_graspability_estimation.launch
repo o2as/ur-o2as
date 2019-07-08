@@ -1,0 +1,16 @@
+<launch>
+    <!-- camera -->
+    <!-- Only PhoXi has been enabled to use since 2018/10/05. -->
+    <arg name="camera_name" default="a_phoxi_m_camera" />
+    <!-- <arg name="camera_serial_number" default="a_phoxi_m_camera" />
+    <node name="$(arg camera_name)" pkg="o2as_phoxi_camera" type="o2as_phoxi_camera" output="screen">
+        <param name="id" value="$(arg camera_serial_number)" />
+        <param name="trigger_mode" value="1" />
+    </node> -->
+    
+    <rosparam command="load" file="$(find graspability_estimation)/config/fge_bin_id.yaml" />
+    <node name="graspability_estimation" pkg="graspability_estimation" type="graspability_estimation_server.py" output="screen">
+        <param name="camera_name" value="$(arg camera_name)" />
+        <param name="image_dir" value="$(find graspability_estimation)/data/images/" />
+    </node>
+</launch>

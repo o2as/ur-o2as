@@ -1,0 +1,6 @@
+sensor_msgs/PointCloud2 cloud
+sensor_msgs/Image image
+int32 dict_id
+---
+o2as_marker_detection/MarkerArray markers
+bool success

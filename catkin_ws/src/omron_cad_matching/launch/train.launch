@@ -1,0 +1,17 @@
+<launch>
+    <!-- args -->
+    <arg name="camera_name" default="test"/>
+    <arg name="parts_name" default="bolt"/>
+    <arg name="cad_filename" default="$(find omron_cad_matching)/data/meshes/$(arg parts_name).stl"/>
+    <arg name="conf_filename" default="$(find omron_cad_matching)/data/object_config/$(arg parts_name).yaml"/>
+    <arg name="setting_filename" default="$(find omron_cad_matching)/data/camera_info/$(arg camera_name).yaml"/>
+    <arg name="model_filename" default="$(find omron_cad_matching)/data/model/$(arg parts_name).dat"/>
+
+    <!-- training node -->
+    <node name="train" pkg="omron_cad_matching" type="train" output="screen">
+        <param name="cad_filename" type="string" value="$(arg cad_filename)"/>
+        <param name="conf_filename" type="string" value="$(arg conf_filename)"/>
+        <param name="setting_filename" type="string" value="$(arg setting_filename)"/>
+        <param name="model_filename" type="string" value="$(arg model_filename)"/>
+    </node>
+</launch>

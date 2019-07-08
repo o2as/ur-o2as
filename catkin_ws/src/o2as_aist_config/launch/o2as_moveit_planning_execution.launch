@@ -1,0 +1,19 @@
+<launch>
+  <arg name="sim" default="false" />
+  <arg name="debug" default="false" />
+  <arg name="config" default="true" />
+    
+  <!-- Remap follow_joint_trajectory -->
+  <remap if="$(arg sim)" from="/follow_joint_trajectory" to="/arm_controller/follow_joint_trajectory"/>
+  
+  <!-- Launch moveit -->
+  <include file="$(find o2as_aist_config)/launch/move_group.launch">
+    <arg name="debug" default="$(arg debug)" />
+  </include>
+
+  <!-- Launch moveit with rviz -->
+  <include file="$(find o2as_aist_config)/launch/moveit_rviz.launch">
+    <arg name="debug" default="$(arg debug)" />
+    <arg name="config" default="$(arg config)" />
+  </include>
+</launch>

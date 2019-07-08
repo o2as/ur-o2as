@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<!--
+This script will try to seek the calibration file:
+  /root/.ros/easy_handeye/o2as_easy_handeye_b_bot_eye_on_base.yaml
+You may need to run o2as_easy_handeye.launch before running
+this launch file.
+-->
+
+<launch>
+    <!-- start easy_handeye publisher for calibration result of a_bot -->
+    <include file="$(find easy_handeye)/launch/publish.launch" >
+        <arg name="eye_on_hand" value="false" />
+        <arg name="namespace_prefix"
+             value="o2as_easy_handeye_a_bot" />
+
+        <!--it is possible to override the link names saved in the yaml file
+            in case of name clashes, for example-->
+        <!-- Assume eye_on_hand is false -->
+        <arg name="robot_base_frame" value="a_bot_base_link" />
+        <arg name="tracking_base_frame"
+             value="camera_link_from_a_bot_estimated" />
+
+        <arg name="inverse" default="false" />
+    </include>
+
+    <!-- start easy_handeye publisher for calibration result of b_bot -->
+    <include file="$(find easy_handeye)/launch/publish.launch" >
+        <arg name="eye_on_hand" value="false" />
+        <arg name="namespace_prefix"
+             value="o2as_easy_handeye_b_bot" />
+
+        <!--it is possible to override the link names saved in the yaml file
+            in case of name clashes, for example-->
+        <!-- Assume eye_on_hand is false -->
+        <arg name="robot_base_frame" value="b_bot_base_link" />
+        <arg name="tracking_base_frame"
+             value="camera_link_from_b_bot_estimated" />
+
+        <arg name="inverse" default="false" />
+    </include>
+
+        <!-- start easy_handeye publisher for calibration result of c_bot -->
+    <include file="$(find easy_handeye)/launch/publish.launch" >
+        <arg name="eye_on_hand" value="false" />
+        <arg name="namespace_prefix"
+             value="o2as_easy_handeye_c_bot" />
+
+        <!--it is possible to override the link names saved in the yaml file
+            in case of name clashes, for example-->
+        <!-- Assume eye_on_hand is false -->
+        <arg name="robot_base_frame" value="c_bot_base_link" />
+        <arg name="tracking_base_frame"
+             value="camera_link_from_c_bot_estimated" />
+
+        <arg name="inverse" default="false" />
+    </include>
+</launch>

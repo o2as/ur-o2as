@@ -1,0 +1,4 @@
+publish_rate: 100
+pitch: 1.98             #9./5.*1.05*1.02   # found from experiment
+pgc_linear_zero: 3325   # The maximum allowed position for the linear motor
+og_open_motor_pos_: 1024

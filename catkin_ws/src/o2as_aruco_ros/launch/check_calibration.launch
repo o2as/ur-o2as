@@ -1,0 +1,23 @@
+<launch>
+
+  <arg name="marker_id"		default="26"/>
+  <arg name="marker_size"	default="0.070"/>    <!-- in m -->
+  <arg name="camera_frame"	default="/camera_link_from_b_bot_estimated"/>
+  <arg name="marker_frame"	default="camera_marker"/>
+  <arg name="corner_refinement"	default="LINES"/>
+  <arg name="camera_name"	default="a_phoxi_m_camera"/>
+
+  <arg name="reference_frame"	value="workspace_center"/> 
+
+  <include file="$(find o2as_aruco_ros)/launch/single.launch">
+    <arg name="marker_id"	value="$(arg marker_id)"/>
+    <arg name="marker_size"	value="$(arg marker_size)"/>
+    <arg name="reference_frame"	value="$(arg reference_frame)"/>
+    <arg name="camera_frame"	value="$(arg camera_frame)"/>
+    <arg name="marker_frame"	value="$(arg marker_frame)"/>
+    <arg name="corner_refinement"	default="$(arg corner_refinement"/>
+    <arg name="camera_name"	value="$(arg camera_name)"/>
+  </include>
+
+</launch>
+

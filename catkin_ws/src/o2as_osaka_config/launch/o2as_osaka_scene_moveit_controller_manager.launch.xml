@@ -1,0 +1,14 @@
+<launch>
+<!-- This first block is copied from ur5_moveit_config as inspiration-->
+  <!-- <rosparam file="$(find o2as_osaka_config)/config/controllers.yaml"/>
+  <param name="use_controller_manager" value="false"/>
+  <param name="trajectory_execution/execution_duration_monitoring" value="false"/>
+  <param name="moveit_controller_manager" value="moveit_simple_controller_manager/MoveItSimpleControllerManager"/> -->
+
+<!-- The block below is copied from the MoveIt tutorial: http://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/controller_configuration/controller_configuration_tutorial.html -->
+   <!-- Set the param that trajectory_execution_manager needs to find the controller plugin -->
+  <arg name="moveit_controller_manager" default="moveit_simple_controller_manager/MoveItSimpleControllerManager" />
+  <param name="moveit_controller_manager" value="$(arg moveit_controller_manager)"/>
+  <!-- load controller_list -->
+  <rosparam file="$(find o2as_osaka_config)/config/controllers.yaml"/>
+</launch>

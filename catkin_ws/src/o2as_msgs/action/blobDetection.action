@@ -1,0 +1,15 @@
+# Request
+geometry_msgs/Polygon maskCorner
+string param_part_id
+
+
+---
+# Results
+geometry_msgs/PoseArray posesDetected
+geometry_msgs/Point blobDetected
+bool success
+sensor_msgs/Image blobImage
+
+---
+# Feedback
+bool f

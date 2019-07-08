@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>o2as_phoxi_camera</name>
+  <version>1.1.4</version>
+  <description>The o2as_phoxi_camera is a package that enables interfacing Photoneo Phoxi Scanner/Camera from ROS</description>
+
+  <author>Matej Sladek</author>
+  <author>Filip Sladek</author>
+
+  <maintainer email="msladek@photoneo.com">Matej Sladek</maintainer>
+
+  <license>BSD</license>
+
+  <url>http://wiki.ros.org/o2as_phoxi_camera</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+
+  <depend>roscpp</depend>
+  <depend>roslib</depend>
+  <depend>rospy</depend>
+  <depend>dynamic_reconfigure</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>std_srvs</depend>
+  <depend>tf</depend>
+  <depend>OpenCV</depend>
+
+</package>

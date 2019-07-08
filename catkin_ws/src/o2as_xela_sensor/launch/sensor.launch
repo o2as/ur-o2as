@@ -1,0 +1,13 @@
+<!-- In order to start the XELA sensor and set sensor values to zero, this launch file needs to be executed as in the example below. -->
+<!-- Example: roslaunch o2as_xela_sensor sensor.launch defect_sensor:="4,7,9,10,15" -->
+<launch>
+  <arg name="board_id" default="1"/>
+  <arg name="node_name" default="xela_sensor_$(arg board_id)"/>
+  <arg name="defect_sensor" default=""/>
+  
+  <node name="$(arg node_name)" pkg="o2as_xela_sensor" type="xela_sensor_node.py" output="screen">
+    <param name="board_id" type="int" value="$(arg board_id)"/>
+    <param name="defect_sensor" type="str" value="$(arg defect_sensor)"/>
+  </node>
+
+</launch>

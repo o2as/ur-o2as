@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="taskboard_scene">
+  <!-- set1_bin1_1 -->
+  <!-- Task board position: .2 .1 to column-->
+  <xacro:include filename="$(find o2as_scene_description)/urdf/task_board.xacro" />
+  <xacro:task_board boardname="taskboard" parent="workspace_center">
+    <origin xyz="-0.3 0.26 0.0" rpy="0 0 ${-pi/2}" />   
+    <!-- <origin xyz="-0.35 0.1 0.0" rpy="0 0 ${-pi/2}" />  -->
+  </xacro:task_board>
+  
+  <!-- Placement mat -->
+  <xacro:include filename="$(find o2as_scene_description)/urdf/o2as_mat.xacro" />
+  <xacro:property name="p_w" value="0.4"/>
+  <xacro:property name="p_l" value="0.4"/>
+  <xacro:o2as_mat matname="mat" mat_w="${p_w}" mat_l="${p_l}" mat_h=".0001" parent="workspace_center">
+    <origin xyz="0.14 0.2 0.0" rpy="0 0 ${-pi/2}" />   
+  </xacro:o2as_mat>
+
+
+  <joint name="belt_placement_tool" type="fixed">
+    <parent link="workspace_center"/>
+    <child link="belt_placement_tool"/>
+    <origin rpy="0.0 0.0 0" xyz="-.23 0.34 0"/>
+  </joint>
+  <link name="belt_placement_tool"/>
+
+  <joint name="retainer_pin_insertion_tool" type="fixed">
+    <parent link="workspace_center"/>
+    <child link="retainer_pin_insertion_tool"/>
+    <origin rpy="0.0 0.0 0" xyz="-0.1 0.36 0"/>
+  </joint>
+  <link name="retainer_pin_insertion_tool"/>
+
+  <joint name="M10nut_tool" type="fixed">
+    <parent link="taskboard"/>
+    <child link="M10nut_tool"/>
+    <origin rpy="0.0 0.0 0" xyz="-0.06 0.46 0"/>
+  </joint>
+  <link name="M10nut_tool"/>
+
+  <joint name="taskboard_set_screw_tool_joint" type="fixed">
+    <parent link="taskboard"/>
+    <child link="taskboard_set_screw_tool_link"/>
+    <origin rpy="0.0 ${pi/2} ${pi/2}" xyz="-0.08 0.3 0"/>
+  </joint>
+  <link name="taskboard_set_screw_tool_link"/>
+  
+</robot>

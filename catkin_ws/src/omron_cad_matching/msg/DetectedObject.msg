@@ -1,0 +1,9 @@
+int32 object_id
+uint8 model_id
+float32 score2D
+float32 score3D
+float32 score_final
+float32 valid_flag
+geometry_msgs/Point pos3D
+float32[] rot3D
+float32[] rot_mat

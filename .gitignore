@@ -1,0 +1,42 @@
+# macOS auto-generated files.
+
+*.DS_Store
+
+# ROS auto-generated files.
+
+catkin_ws/CMakeLists.txt
+catkin_ws/.catkin_tools/
+catkin_ws/build/
+catkin_ws/devel/
+catkin_ws/logs/
+
+# Python auto-generated files.
+
+*.pyc
+
+# SpCo Semantic Mapping data.
+
+catkin_ws/src/em_spco_mapping/data/
+*.caffemodel
+
+# For a second sandbox workspace
+catkin_ws2/
+
+# PyCharm
+.idea
+
+# PhoXi log files
+PhotoneoLogFiles/
+
+*.csv#
+
+placement_mat_generator/\.~lock\.placement_mat\.ods#
+
+matlab_gen/
+
+catkin_ws/src/o2as_parts_description/urdf/generated/
+catkin_ws/src/o2as_new_parts_description/urdf/generated/
+
+*.bin
+
+*.ipch

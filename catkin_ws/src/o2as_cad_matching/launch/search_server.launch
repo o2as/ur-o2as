@@ -1,0 +1,13 @@
+<launch>
+	<include file="$(find omron_cad_matching)/launch/search_server.launch">
+		<arg name="image_dir" value="$(find o2as_cad_matching)/data/image"/>
+	</include>
+
+	<node name="cad_matching" pkg="o2as_cad_matching" type="o2as_cad_matching_server.py" output="screen">
+		<param name="model_dir" type="string" value="$(find o2as_cad_matching)/data/model"/>
+		<param name="setting_dir"  type="string" value="$(find o2as_cad_matching)/data/setting"/>
+		<param name="object_config_dir"  type="string" value="$(find o2as_cad_matching)/data/object_config"/>
+		<param name="object_id" type="int" value="11"/> <!-- 1 to 17 -->
+		<param name="camera" type="string" value="a_phoxi_m_camera"/>
+	</node>
+</launch>

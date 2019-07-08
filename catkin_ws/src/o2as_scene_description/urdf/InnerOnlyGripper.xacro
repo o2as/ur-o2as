@@ -1,0 +1,82 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="InnerOnlyGripper
+">
+
+  <xacro:macro name="InnerOnlyGripper" params="prefix grippername parent *origin">
+  <xacro:property name="mesh_file" value="package://o2as_scene_description/meshes/Assem2.STL" />
+
+  <link name="${prefix}${grippername}">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 ${pi/2}" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="${mesh_file}" scale="0.001 0.001 0.001"/>
+      </geometry>
+        <material name="darkgrey">
+          <color rgba="0.1 0.1 0.1 1"/>
+        </material>
+    </visual>
+
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 -0.01 0.062"/>
+      <geometry>
+        <box size="0.07 0.09 0.18"/> 
+      </geometry>
+    </collision>
+
+    <collision>
+      <origin rpy="0 0 0" xyz="0 -0.015 0.116"/>
+      <geometry>
+        <box size=".04 .05 .08"/>
+      </geometry>
+    </collision>
+    
+    <!-- <visual>
+      <origin rpy="0 0 0" xyz="0.0 -0.015 0.062"/>
+      <geometry>
+        <box size="0.07 0.09 0.1"/> 
+      </geometry>
+      <material name="green2">
+        <color rgba="0.1 0.8 0.1 0.3"/>
+      </material>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 -0.015 0.116"/>
+      <geometry>
+        <box size=".04 .05 .08"/>
+      </geometry>
+      <material name="cyan2">
+        <color rgba="0.3 0.5 0.5 0.3"/>
+      </material>
+    </visual> -->
+
+
+  </link>
+
+  <joint name="${prefix}${grippername}" type="fixed">
+    <parent link="${parent}" />
+    <child link = "${prefix}${grippername}" />
+    <xacro:insert_block name="origin"/>
+  </joint>
+
+  <!-- Add additional links for us to plan with.-->
+  <joint name="${prefix}${grippername}_tip_link_joint" type="fixed">
+    <parent link="${parent}"/>
+    <child link="${prefix}${grippername}_tip_link"/>
+    <origin rpy="0.0 ${-pi/2} 0.0" xyz="0.001 -0.008 .162"/>
+    <!-- +y is the same, +x in the new frame is +z in the parent, +z is -x in the parent? -->
+  </joint>
+  <link name="${prefix}${grippername}_tip_link"/>
+  
+  <joint name="${prefix}${grippername}_screw_pickup_joint" type="fixed">
+    <parent link="${prefix}${grippername}_tip_link"/>
+    <child link="${prefix}${grippername}_screw_pickup"/>
+    <origin rpy="0.0 ${pi/2} 0.0" xyz="-.032 0 -0.003"/>
+  </joint>
+  <link name="${prefix}${grippername}_screw_pickup"/>
+
+  </xacro:macro>
+</robot>

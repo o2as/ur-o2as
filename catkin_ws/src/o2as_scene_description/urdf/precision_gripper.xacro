@@ -1,0 +1,75 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="precision_gripper">
+
+  <xacro:macro name="precision_gripper" params="prefix grippername parent *origin">
+  <xacro:property name="mesh_file" value="package://o2as_scene_description/meshes/PrecisionGripper.STL" />
+
+  <link name="${prefix}${grippername}">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 ${pi/2} ${-pi/2}" xyz="0.02 0 0"/>
+      <geometry>
+        <mesh filename="${mesh_file}" scale="1 1 1"/>
+      </geometry>
+        <material name="darkgrey">
+          <color rgba="0.1 0.1 0.1 1"/>
+        </material>
+      
+    </visual>
+
+
+    <visual>
+      <origin rpy="0 ${pi/2} 0" xyz="-0.05 0 0"/>
+      <geometry>
+        <box size="0.18 0.09 0.13"/>
+      </geometry>
+      <material name="green2">
+        <color rgba="0.1 0.8 0.1 0.3"/>
+      </material>
+    </visual>
+    <visual>
+      <origin rpy="0 ${pi/2} 0" xyz="-0.14 0 0"/>
+      <geometry>
+        <box size=".1 .08 .07"/>
+      </geometry>
+      <material name="cyan2">
+        <color rgba="0.3 0.5 0.5 0.3"/>
+      </material>
+    </visual>
+
+    <!-- TODO: Do this properly and check the offset above. -->
+    <!-- Back part -->
+    <collision>
+      <origin rpy="0 ${pi/2} 0" xyz="-0.05 0 0"/>
+      <geometry>
+        <box size="0.18 0.09 0.13"/>
+      </geometry>
+    </collision>
+    <!-- Front part -->
+    <collision>
+      <origin rpy="0 ${pi/2} 0" xyz="-0.14 0 0"/>
+      <geometry>
+        <box size=".1 .08 .07"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="${prefix}${grippername}" type="fixed">
+    <parent link="${parent}" />
+    <child link = "${prefix}${grippername}" />
+    <xacro:insert_block name="origin"/>
+  </joint>
+
+  <!-- Add additional links for us to plan with.-->
+  <joint name="${prefix}${grippername}_tip_link_joint" type="fixed">
+    <parent link="${parent}"/>
+    <child link="${prefix}${grippername}_tip_link"/>
+    <!-- Hand-calibrated values from 14 August 2018 @ OSX (not very precise) -->
+    <origin rpy="0.0 ${-pi/2} 0.0" xyz="0.0025 -0.002 .235"/>
+  </joint>
+  <link name="${prefix}${grippername}_tip_link"/>
+  </xacro:macro>
+</robot>

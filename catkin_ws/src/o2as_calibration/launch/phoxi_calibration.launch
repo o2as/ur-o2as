@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <!-- args -->
+  <arg name="robot_name" default="b_bot"/>  <!-- "a_bot", "b_bot", or "c_bot" -->
+  <arg name="camera_name" default="a_phoxi_m_camera"/>
+  <arg name="eye_on_hand" default="false"/>
+  <arg name="config" default="real"/> <!-- "sim", "real", "osaka", or "aist" -->
+
+	<!-- Start camera -->
+	<arg name="camera_serial_number" default="2018-03-027-LC3"/>
+  <node name="$(arg camera_name)" pkg="o2as_phoxi_camera" type="o2as_phoxi_camera" output="screen">
+    <param name="id" value="$(arg camera_serial_number)"/>
+    <param name="trigger_mode" value="1"/>
+  </node>
+
+	<!-- Start cad matching -->
+	<include file="$(find o2as_cad_matching)/launch/search_server.launch"/>
+	<node name="data_collection_server" pkg="omron_cad_matching" type="data_collection_server" output="screen"/>
+	<node name="reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure"/>
+
+  <!-- Start robot controller -->
+  <include file="$(find o2as_calibration)/launch/robot_control.launch">
+    <arg name="config" value="$(arg config)"/>
+  </include>
+
+  <!-- Start calibrator -->
+  <node name="hand_eye_solver" pkg="visp_hand2eye_calibration" type="visp_hand2eye_calibration_calibrator">
+    <remap from="/compute_effector_camera_quick" to="compute_effector_camera_quick"/>
+    <param name="eye_on_hand" type="string" value="$(arg eye_on_hand)"/>
+  </node>
+
+</launch>

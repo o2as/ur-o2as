@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="robot_name" />  <!-- "a_bot", "b_bot", or "c_bot" -->
+  <arg name="camera_name" default="a_phoxi_m_camera"/>
+  <arg name="namespace_prefix" value="o2as_easy_handeye_$(arg robot_name)" />
+  <arg name="marker_size" default="0.07"
+       doc="Size of the ArUco marker used, in meters" />
+  <arg name="sim" default="false" />
+
+  <!-- Move group -->
+  <arg name="move_group" value="$(arg robot_name)" />
+
+  <!-- Set AR marker ID -->
+  <arg name="marker_id" value="17" if="$(eval arg('robot_name') == 'a_bot')"/>
+  <arg name="marker_id" value="26" if="$(eval arg('robot_name') == 'b_bot')"/>
+  <arg name="marker_id" value="256" if="$(eval arg('robot_name') == 'c_bot')"/>
+  <!--<arg name="marker_id" default="26" doc="The ID of the ArUco marker used" />-->
+
+  <!-- Continuous publishing of Phoxi data -->
+  <node name="trigger_phoxi" pkg="o2as_easy_handeye"
+        type="trigger_phoxi.py"/>
+
+  <!-- start ArUco -->
+  <node name="aruco_tracker" pkg="aruco_ros" type="single">
+    <!-- Remap topic names -->
+    <!-- String "/rgb/" is required for topics "camera_info" and
+         "image_raw" in realsense. Note that Phoxi publish topics named
+         "texture" instead of "image_raw". -->
+    <!-- <remap from="/camera_info"
+         to="/$(arg camera_name)/rgb/camera_info" /> -->
+    <!-- <remap from="/image" to="/$(arg camera_name)/rgb/image_raw" /> -->
+    <!-- Use camera_info2 instead of camera_info in Gazebo with Phoxi -->
+    <remap from="/camera_info" to="/$(arg camera_name)/camera_info2"/>
+    <remap from="/image" to="/$(arg camera_name)/texture" />
+
+    <!-- Other parameters -->
+    <param name="image_is_rectified" value="false"/>
+    <param name="marker_size"        value="$(arg marker_size)"/>
+    <param name="marker_id"          value="$(arg marker_id)"/>
+    <param name="reference_frame"    value=""/>
+    <param name="camera_frame"       value="camera_link"/>
+    <param name="marker_frame"       value="camera_marker" />
+  </node>
+
+  <include
+      file="$(find o2as_moveit_config)/launch/o2as_moveit_planning_execution.launch">
+    <arg name="sim" value="$(arg sim)" />
+  </include>
+
+  <!-- start easy_handeye calibrator -->
+  <include file="$(find o2as_easy_handeye)/launch/calibrate.launch" >
+    <arg name="namespace_prefix" value="$(arg namespace_prefix)" />
+    <arg name="eye_on_hand" value="false" />
+
+    <arg name="tracking_base_frame" value="camera_link" />
+    <arg name="tracking_marker_frame" value="camera_marker" />
+    <arg name="robot_base_frame" value="$(arg robot_name)_base_link" />
+    <arg name="robot_effector_frame"
+         value="$(arg robot_name)_ee_link" />
+
+    <arg name="freehand_robot_movement" value="true" />
+    <arg name="robot_velocity_scaling" value="0.5" />
+    <arg name="robot_acceleration_scaling" value="0.2" />
+
+    <arg name="move_group" value="$(arg move_group)" />
+  </include>
+
+</launch>
