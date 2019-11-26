@@ -1,6 +1,3 @@
-[submodule "wiki"]
-	path = wiki
-	url = git@gitlab.com:o2as/ur-o2as.wiki.git
 [submodule "catkin_ws/src/ur_modern_driver"]
 	path = catkin_ws/src/ur_modern_driver
 	url = https://github.com/felixvd/ur_modern_driver.git
@@ -34,3 +31,6 @@
 [submodule "catkin_ws/src/universal_robot"]
 	path = catkin_ws/src/universal_robot
 	url = https://github.com/ros-industrial/universal_robot
+[submodule "wiki"]
+        path = wiki
+        url = https://github.com/o2as/ur-o2as.wiki.git
