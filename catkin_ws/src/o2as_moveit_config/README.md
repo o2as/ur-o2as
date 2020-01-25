@@ -1,6 +1,6 @@
 # How to use
 
-You can run the 3 robots in simulation via these commands. **Do not run this package on live robots yet!**
+You can run the 3 robots in simulation via these commands.
 
 Option A: Simple demo mode in MoveIt (best for checking simple robot instructions and if your path planning works).
 
@@ -25,13 +25,3 @@ In rviz, you can also press Ctrl+O and load "show_tf_frames.rviz" in the o2as_mo
 # How to use fewer than 3 robots
 
 Delete the other robots from the config files and scene definition.
-
-TODO: Explain this in a little bit more detail.
-
-
-# ToDo
-
-- Fix "all_bots" complaining about not being a chain.
-- Add controllers for the grippers
-- Add the cameras
-- Add all the scenes
