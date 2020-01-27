@@ -12,13 +12,13 @@
 	url = https://github.com/UTNuclearRoboticsPublic/soem.git
 [submodule "catkin_ws/src/robotiq-cri"]
 	path = catkin_ws/src/robotiq-cri
-	url = https://gitlab.com/o2as/robotiq-cri.git
+	url = https://github.com/o2as/robotiq-cri.git
 [submodule "catkin_ws/src/phoxi_camera"]
 	path = catkin_ws/src/phoxi_camera
 	url = https://github.com/photoneo/phoxi_camera
 [submodule "catkin_ws/src/moveit"]
 	path = catkin_ws/src/moveit
-	url = https://gitlab.com/o2as/moveit
+	url = https://github.com/o2as/moveit
 [submodule "catkin_ws/src/moveit_msgs"]
 	path = catkin_ws/src/moveit_msgs
 	url = https://github.com/felixvd/moveit_msgs
