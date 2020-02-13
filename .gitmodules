@@ -6,13 +6,13 @@
 	url = https://github.com/ros-industrial/industrial_core.git
 [submodule "catkin_ws/src/robotiq-UTNR"]
 	path = catkin_ws/src/robotiq-UTNR
-	url = https://github.com/UTNuclearRoboticsPublic/robotiq.git
+	url = https://github.com/UTNuclearRobotics/robotiq.git
 [submodule "catkin_ws/src/soem-UTNR"]
 	path = catkin_ws/src/soem-UTNR
 	url = https://github.com/UTNuclearRoboticsPublic/soem.git
 [submodule "catkin_ws/src/robotiq-cri"]
 	path = catkin_ws/src/robotiq-cri
-	url = https://github.com/o2as/robotiq-cri.git
+	url = https://github.com/o2as/robotiq.git
 [submodule "catkin_ws/src/phoxi_camera"]
 	path = catkin_ws/src/phoxi_camera
 	url = https://github.com/photoneo/phoxi_camera

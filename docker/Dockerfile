@@ -28,7 +28,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN echo "deb http://packages.ros.org/ros/ubuntu xenial main" > /etc/apt/sources.list.d/ros-latest.list
 
 # Add package keys.
-RUN apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+RUN apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
 # Install ROS-desktop-full packages (including ROS, rqt, rviz, and more).
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -160,7 +160,7 @@ RUN apt-get update && apt-get install libxtst6
 # https://code.visualstudio.com/docs/editor/extension-gallery#_command-line-extension-management
 RUN code --install-extension ms-python.python --user-data-dir=/root/.vscode/ \
 	&& code --install-extension ms-vscode.cpptools --user-data-dir=/root/.vscode/ \
-	&& code --install-extension PeterJausovec.vscode-docker --user-data-dir=/root/.vscode/ \
+	&& code --install-extension ms-azuretools.vscode-docker --user-data-dir=/root/.vscode/ \
 	&& code --install-extension streetsidesoftware.code-spell-checker --user-data-dir=/root/.vscode/ \
 	&& code --install-extension eamodio.gitlens --user-data-dir=/root/.vscode/ \
 	&& code --install-extension ajshort.ros --user-data-dir=/root/.vscode/ \
