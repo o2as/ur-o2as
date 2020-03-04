@@ -23,6 +23,19 @@ https://github.com/o2as/ur-o2as/wikis/contribution-guidelines
 
 ## Credits
 
-Please cite our paper (to be published in Advanced Robotics; Bibtex data will be added here) if this code has been insightful for your research or development.
+Please cite our paper if this code has been insightful for your research or development:  
+
+Drigalski, F, Nakashima, C, Shibata, Y, Konishi, Y, Triyonoputro, J, Nie, K, Petit, D, Ueshiba, T, Takase, R, Domae, Y, Yoshioka, T, Ijiri, Y, Ramirez-Alpizar, I, Wan, W, Harada, K. "Team O2AS at the World Robot Summit 2018: An Approach to Robotic Kitting and Assembly Tasks using General Purpose Grippers and Tools". Advanced Robotics 2020.
+
+BibTeX:  
+```
+@article{doi:10.1080/01691864.2020.1734481,
+author = {von Drigalski,Felix and Nakashima,Chisato and Shibata,Yoshiya and Konishi,Yoshinori and Triyonoputro,Joshua and Nie,Kaidi and Petit,Damien and Ueshiba,Toshio and Takase,Ryuichi and Domae,Yukiyasu and Yoshioka,Taku and Ijiri,Yoshihisa and Ramirez-Alpizar,Ixchel Georgina and Wan,Weiwei and Harada,Kensuke},
+title = {Team O2AS at the World Robot Summit 2018: An Approach to Robotic Kitting and Assembly Tasks using General Purpose Grippers and Tools},
+journal = {Advanced Robotics},
+year = {2020},
+doi = {10.1080/01691864.2020.1734481},
+}
+```
 
 This project is based on the HSR environment maintained at the [Emergent Systems Laboratory](http://www.em.ci.ritsumei.ac.jp/), Department of Human and Computer Intelligence, College of Information Science and Engineering, [Ritsumeikan University](http://en.ritsumei.ac.jp/).
