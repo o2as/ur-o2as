@@ -2,8 +2,7 @@
 
 `master`: [![pipeline status](https://gitlab.com/o2as/ur-o2as/badges/master/pipeline.svg)](https://gitlab.com/o2as/ur-o2as/commits/master) `devel`: [![pipeline status](https://gitlab.com/o2as/ur-o2as/badges/devel/pipeline.svg)](https://gitlab.com/o2as/ur-o2as/commits/devel) 
 
-This project aims to provide a development framework for Team O2AS in the Industrial Challenge of the [World Robot Summit 2018](http://worldrobotsummit.org/en/).
-The goal is to provide a robust, maintainable, virtualized, and documented environment for all internal and external contributors.
+This project stores the software running the robot solution of Team O2AS in the Industrial Challenge of the [World Robot Summit 2018](http://worldrobotsummit.org/en/). Installation is fully automated, and the solution runs inside a Docker container. Only Docker is installed on the host PC (Ubuntu 16.04 or newer).
 
 ## QUICK START
 
@@ -18,7 +17,7 @@ https://github.com/o2as/ur-o2as/wikis/home
 
 ## Contribution Guidelines
 
-As the project is being deployed for the first time, minor compatibility issues are expected to arise. Please report any issue. Please carefully read the contribution guidelines before pushing code or requesting a merge. Details can be found in the GitLab wiki:  
+As the project is being deployed for the first time, minor compatibility issues are expected to arise. Please report any issue. Please carefully read the contribution guidelines before pushing code or requesting a merge. Details can be found in the GitLab wiki:
 https://github.com/o2as/ur-o2as/wikis/contribution-guidelines
 
 ## Credits
