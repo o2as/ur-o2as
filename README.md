@@ -23,9 +23,7 @@ https://github.com/o2as/ur-o2as/wikis/contribution-guidelines
 
 ## Credits
 
-Please cite our paper if this code has been insightful for your research or development:  
-
-Drigalski, F, Nakashima, C, Shibata, Y, Konishi, Y, Triyonoputro, J, Nie, K, Petit, D, Ueshiba, T, Takase, R, Domae, Y, Yoshioka, T, Ijiri, Y, Ramirez-Alpizar, I, Wan, W, Harada, K. "Team O2AS at the World Robot Summit 2018: An Approach to Robotic Kitting and Assembly Tasks using General Purpose Grippers and Tools". Advanced Robotics 2020.
+Please cite our paper ([arXiv](http://arxiv.org/abs/2003.02427)) if this code has been insightful for your research or development:  
 
 BibTeX:  
 ```
