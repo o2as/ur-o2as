@@ -1,4 +1,4 @@
-# O2AS UR Project
+# O2AS @ World Robot Summit Assembly Challenge 2018
 
 ![O2AS](O2AS.gif)
 
