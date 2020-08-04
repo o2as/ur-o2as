@@ -1,6 +1,6 @@
 # O2AS UR Project
 
-
+![O2AS](O2AS.gif)
 
 This project stores the software running the robot solution of Team O2AS in the Assembly/Industrial League World Robot Challenge at the [World Robot Summit 2018](http://worldrobotsummit.org/en/). Installation is fully automated, and the solution runs inside a Docker container. Only Docker is installed on the host PC (Ubuntu 16.04 or newer).
 
