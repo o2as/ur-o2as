@@ -35,3 +35,9 @@ doi = {10.1080/01691864.2020.1734481},
 ```
 
 This project is based on the HSR environment maintained at the [Emergent Systems Laboratory](http://www.em.ci.ritsumei.ac.jp/), Department of Human and Computer Intelligence, College of Information Science and Engineering, [Ritsumeikan University](http://en.ritsumei.ac.jp/).
+
+If you reuse the scripts relating containerization, please consider citing:
+
+L. El Hafi and T. Yamamoto, "Toward the Public Release of a Software Development Environment for Human Support Robots", in Proceedings of 2020 Annual Conference of the Robotics Society of Japan (RSJ 2020), ref. RSJ2020AC3E1-01, pp. 1-2, Online, Oct. 2020.  
+L. El Hafi, S. Matsuzaki, S. Itadera, and T. Yamamoto, "Deployment of a Containerized Software Development Environment for Human Support Robots", in Proceedings of 2019 Annual Conference of the Robotics Society of Japan (RSJ 2019), ref. RSJ2019AC3K1-03, pp. 1-2, Tokyo, Japan, Sep. 2019.  
+L. El Hafi, Y. Hagiwara, and T. Taniguchi, "Abstraction-Rich Workflow for Agile Collaborative Development and Deployment of Robotic Solutions", in Proceedings of 2018 Annual Conference of the Robotics Society of Japan (RSJ 2018), ref. RSJ2018AC3D3-02, pp. 1-3, Kasugai, Japan, Sep. 2018.  
